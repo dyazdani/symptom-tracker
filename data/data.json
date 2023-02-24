@@ -1,27 +1,31 @@
 {
     "user": {
         "name": "Jane Doe",
-        "date": 0,
-        "symptoms": [
+        "entries": [
             {
-                "name": "Fatigue",
-                "severity": 2,
-                "type": "physical"
-            },
-            {
-                "name": "Anxiety",
-                "severity": 0,
-                "type": "mental"
-            },
-            {
-                "name": "Stress",
-                "severity": 3,
-                "type": "mental"
-            },
-            {
-                "name": "Headache",
-                "severity": 1,
-                "type": "physical"
+                "timestamp": 0,
+                "symptoms": [
+                    {
+                        "name": "Fatigue",
+                        "severity": 2,
+                        "type": "physical"
+                    },
+                    {
+                        "name": "Anxiety",
+                        "severity": 0,
+                        "type": "mental"
+                    },
+                    {
+                        "name": "Stress",
+                        "severity": 3,
+                        "type": "mental"
+                    },
+                    {
+                        "name": "Headache",
+                        "severity": 1,
+                        "type": "physical"
+                    }
+                ]
             }
         ]
     }

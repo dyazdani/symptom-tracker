@@ -1,0 +1,19 @@
+{
+  "name": "dom-manip-symptom-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paloobi/dom-manip-symptom-checker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paloobi/dom-manip-symptom-checker/issues"
+  },
+  "homepage": "https://github.com/paloobi/dom-manip-symptom-checker#readme"
+}

@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/paloobi/dom-manip-symptom-checker/issues"
   },
-  "homepage": "https://github.com/paloobi/dom-manip-symptom-checker#readme"
+  "homepage": "https://github.com/paloobi/dom-manip-symptom-checker#readme",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^2.8.4"
+  }
 }

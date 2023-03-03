@@ -1,1 +1,5 @@
-// Add your code here
+fetch('./data/sample-data.json')
+  .then((response) => response.json())
+  .then((data) => {
+    // Add your code here
+  });

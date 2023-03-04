@@ -1,7 +1,6 @@
 const data = await fetch('./data/sample-data.json').then((response) => response.json());
 
-// Start with looking at "type" key and creating <div> to put in <form>
-// if <div> not already created.
+// Creating a <div> with id set to symptom type to be nested in <form>
 const { symptoms } = data.user.entries[0];
 
 let physicalDivCreated = false;

@@ -3,10 +3,6 @@ const data = await fetch('./data/sample-data.json').then((response) => response.
 // Creating <form> node
 const form = document.createElement('form');
 
-// Creating submit button for bottom of the form
-const submitBtn = document.createElement('input');
-submitBtn.setAttribute('type', 'submit');
-
 // Creating a <div> with id set to symptom type to be nested in <form>
 const { symptoms } = data.user.entries[0];
 
@@ -72,3 +68,8 @@ severeInput.setAttribute('type', 'radio');
 severeInput.setAttribute('name', 'severity');
 severeInput.setAttribute('value', 3);
 severeInput.id = 'severe';
+
+// Creating submit button for bottom of the form
+const submitBtn = document.createElement('input');
+submitBtn.setAttribute('type', 'submit');
+form.appendChild(submitBtn);

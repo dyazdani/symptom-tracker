@@ -104,14 +104,19 @@ symptoms.forEach((element) => {
     radioDiv.appendChild(moderateInput);
 
     // The 'Severe' button
-    // Creating and adding 'Moderate' <label> to radioDiv
+    // Creating and adding 'Severe' <label> to radioDiv
     const severeLabel = document.createElement('label');
     severeLabel.setAttribute('for', 'severe');
+    noneLabel.innerText = 'severe';
+    radioDiv.appendChild(severeLabel);
+
+    // Creating and adding 'Severe' <input> to radioDiv
     const severeInput = document.createElement('input');
     severeInput.setAttribute('type', 'radio');
     severeInput.setAttribute('name', 'severity');
     severeInput.setAttribute('value', 3);
     severeInput.id = 'severe';
+    radioDiv.appendChild(severeInput);
   }
 });
 

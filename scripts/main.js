@@ -1,4 +1,38 @@
-const data = await fetch('./data/sample-data.json').then((response) => response.json());
+// const data = await fetch('./data/sample-data.json').then((response) => response.json());
+
+// TEMPORARILY PLACING sample-data.json HERE UNTIL FIX ERROR LOADING main.js INTO index.html
+const data = {
+  user: {
+    name: 'Jane Doe',
+    entries: [
+      {
+        timestamp: 0,
+        symptoms: [
+          {
+            name: 'Fatigue',
+            severity: 2,
+            type: 'physical',
+          },
+          {
+            name: 'Anxiety',
+            severity: 0,
+            type: 'mental',
+          },
+          {
+            name: 'Stress',
+            severity: 3,
+            type: 'mental',
+          },
+          {
+            name: 'Headache',
+            severity: 1,
+            type: 'physical',
+          },
+        ],
+      },
+    ],
+  },
+};
 
 // Start with looking at "type" key and creating <div> to put in <form>
 // if <div> not already created.

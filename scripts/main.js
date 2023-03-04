@@ -19,5 +19,14 @@ fetch('./data/sample-data.json')
       }
     });
 
-    console.log(symptomTypes);
+    // Making <fieldset> for <form>
+
+    // The "None" button
+    const noneLabel = document.createElement('label');
+    noneLabel.setAttribute('for', 'none');
+    const noneInput = document.createElement('input');
+    noneInput.setAttribute('type', 'radio');
+    noneInput.setAttribute('name', 'severity');
+    noneInput.setAttribute('value', 0);
+    noneInput.id = 'none';
   });

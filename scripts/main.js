@@ -117,6 +117,15 @@ symptoms.forEach((element) => {
     severeInput.setAttribute('value', 3);
     severeInput.id = 'severe';
     radioDiv.appendChild(severeInput);
+
+    // Adding fieldset to <div> with corresponding symptom type
+    if (element.type === 'physical') {
+      physical.appendChild(fieldset);
+    }
+
+    if (element.type === 'mental') {
+      mental.appendChild(fieldset);
+    }
   }
 });
 

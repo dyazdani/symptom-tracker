@@ -27,10 +27,6 @@ symptoms.forEach((element) => {
   }
 });
 
-// Testing if I can append child to a node
-const physical = document.createElement('div');
-document.head.appendChild(physical);
-
 // ----- Making <fieldset> for <form> -----
 
 // The "None" button

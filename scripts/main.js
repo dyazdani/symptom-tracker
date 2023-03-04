@@ -3,7 +3,7 @@ const data = await fetch('./data/sample-data.json').then((response) => response.
 // Creating <form> node
 const form = document.createElement('form');
 
-// Creating a <div> with id set to symptom type to be nested in <form>
+// Creating <div> elements for physical and mental symptom types
 const { symptoms } = data.user.entries[0];
 
 let physicalDivCreated = false;
@@ -11,19 +11,33 @@ let mentalDivCreated = false;
 
 symptoms.forEach((element) => {
   if (element.type === 'physical' && !physicalDivCreated) {
+    // Creating <div>
     const physical = document.createElement('div');
     physical.id = 'physical';
+    physicalDivCreated = true;
+
+    // Creating <h3> (aka title of <div>)
     const physicalTitle = document.createElement('h3');
     physicalTitle.innerText = 'Physical';
-    physicalDivCreated = true;
+    physical.appendChild(physicalTitle);
+
+    // Adding <div> to <form>
+    form.appendChild(physical);
   }
 
   if (element.type === 'mental' && !mentalDivCreated) {
+    // Creating <div>
     const mental = document.createElement('div');
     mental.id = 'mental';
+    mentalDivCreated = true;
+
+    // Creating <h3> (aka title of <div>)
     const mentalTitle = document.createElement('h3');
     mentalTitle.innerText = 'Mental';
-    mentalDivCreated = true;
+    mental.appendChild(mentalTitle);
+
+    // Adding <div> to <form>
+    form.appendChild(mental);
   }
 });
 

@@ -104,6 +104,7 @@ symptoms.forEach((element) => {
     radioDiv.appendChild(moderateInput);
 
     // The 'Severe' button
+    // Creating and adding 'Moderate' <label> to radioDiv
     const severeLabel = document.createElement('label');
     severeLabel.setAttribute('for', 'severe');
     const severeInput = document.createElement('input');

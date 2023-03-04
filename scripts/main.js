@@ -29,4 +29,13 @@ fetch('./data/sample-data.json')
     noneInput.setAttribute('name', 'severity');
     noneInput.setAttribute('value', 0);
     noneInput.id = 'none';
+
+    // The "None" button
+    const mildLabel = document.createElement('label');
+    mildLabel.setAttribute('for', 'mild');
+    const mildInput = document.createElement('input');
+    mildInput.setAttribute('type', 'radio');
+    mildInput.setAttribute('name', 'severity');
+    mildInput.setAttribute('value', 1);
+    mildInput.id = 'mild';
   });

@@ -53,6 +53,10 @@ symptoms.forEach((element) => {
     legend.innerText = symptoms.name;
     fieldset.appendChild(legend);
 
+    // Creating and adding <div> for radio buttons
+    const radioDiv = document.createElement('div');
+    fieldset.appendChild(radioDiv);
+
     // Creating radio buttons
     // The "None" button
     const noneLabel = document.createElement('label');

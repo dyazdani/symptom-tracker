@@ -1,5 +1,8 @@
 const data = await fetch('./data/sample-data.json').then((response) => response.json());
 
+// Creating <form> node
+const form = document.createElement('form');
+
 // Creating a <div> with id set to symptom type to be nested in <form>
 const { symptoms } = data.user.entries[0];
 

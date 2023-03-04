@@ -1,25 +1,32 @@
 fetch('./data/sample-data.json')
   .then((response) => response.json())
   .then((data) => {
-    // Populate subsections for each unique syptom type.
-
-    // Start with searching data for "type" key and if the value is unique,
-    // create a subsection of <section>.
-
-    // create a variable for the array of symptoms
+    // Start with looking at "type" key and creating <div> to put in <form>
+    // if <div> not already created.
     const { symptoms } = data.user.entries[0];
 
-    const symptomTypes = [];
+    let physicalDivCreated = false;
+    let mentalDivCreated = false;
 
     symptoms.forEach((element) => {
-      if (element.type) {
-        if (!symptomTypes.includes(element.type)) {
-          symptomTypes.push(element.type);
-        }
+      if (element.type === 'physical' && !physicalDivCreated) {
+        const physical = document.createElement('div');
+        physical.id = 'physical';
+        const physicalTitle = document.createElement('h3');
+        physicalTitle.innerText = 'Physical';
+        physicalDivCreated = true;
+      }
+
+      if (element.type === 'mental' && !mentalDivCreated) {
+        const mental = document.createElement('div');
+        mental.id = 'mental';
+        const mentalTitle = document.createElement('h3');
+        mentalTitle.innerText = 'Mental';
+        mentalDivCreated = true;
       }
     });
 
-    // Making <fieldset> for <form>
+    // ----- Making <fieldset> for <form> -----
 
     // The "None" button
     const noneLabel = document.createElement('label');

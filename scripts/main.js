@@ -30,7 +30,7 @@ fetch('./data/sample-data.json')
     noneInput.setAttribute('value', 0);
     noneInput.id = 'none';
 
-    // The "None" button
+    // The "Mild" button
     const mildLabel = document.createElement('label');
     mildLabel.setAttribute('for', 'mild');
     const mildInput = document.createElement('input');
@@ -38,4 +38,13 @@ fetch('./data/sample-data.json')
     mildInput.setAttribute('name', 'severity');
     mildInput.setAttribute('value', 1);
     mildInput.id = 'mild';
+
+    // The "Moderate" button
+    const moderateLabel = document.createElement('label');
+    moderateLabel.setAttribute('for', 'moderate');
+    const moderateInput = document.createElement('input');
+    moderateInput.setAttribute('type', 'radio');
+    moderateInput.setAttribute('name', 'severity');
+    moderateInput.setAttribute('value', 2);
+    moderateInput.id = 'moderate';
   });

@@ -1,6 +1,2 @@
-fetch('./data/sample-data.json')
-    .then(response => response.json())
-    .then(data => {
-        // Add your code here
-        
-    });
+const data = await fetch('./data/sample-data.json')
+    .then(response => response.json());

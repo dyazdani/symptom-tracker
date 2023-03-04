@@ -48,9 +48,9 @@ symptoms.forEach((element) => {
     const fieldset = document.createElement('fieldset');
     fieldset.id = element.name;
 
-    // Creating  and adding <legend>
+    // Creating and adding <legend>
     const legend = document.createElement('legend');
-    legend.innerText = symptom.name;
+    legend.innerText = symptoms.name;
     fieldset.appendChild(legend);
 
     // Creating radio buttons

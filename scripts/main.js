@@ -47,4 +47,13 @@ fetch('./data/sample-data.json')
     moderateInput.setAttribute('name', 'severity');
     moderateInput.setAttribute('value', 2);
     moderateInput.id = 'moderate';
+
+    // The "Severe" button
+    const severeLabel = document.createElement('label');
+    severeLabel.setAttribute('for', 'severe');
+    const severeInput = document.createElement('input');
+    severeInput.setAttribute('type', 'radio');
+    severeInput.setAttribute('name', 'severity');
+    severeInput.setAttribute('value', 3);
+    severeInput.id = 'severe';
   });

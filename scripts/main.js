@@ -151,5 +151,3 @@ symptoms.forEach((element) => {
 const submitBtn = document.createElement('input');
 submitBtn.setAttribute('type', 'submit');
 form.appendChild(submitBtn);
-
-console.log(form);

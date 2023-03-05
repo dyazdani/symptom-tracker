@@ -52,7 +52,7 @@ symptoms.forEach((element) => {
 
     // Creating and adding <legend>
     const legend = document.createElement('legend');
-    legend.innerText = symptoms.name;
+    legend.innerText = element.name;
     fieldset.appendChild(legend);
 
     // Creating and adding <div> for radio buttons
@@ -79,7 +79,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Mild' <label> to radioDiv
     const mildLabel = document.createElement('label');
     mildLabel.setAttribute('for', 'mild');
-    noneLabel.innerText = 'mild';
+    mildLabel.innerText = 'mild';
     radioDiv.appendChild(mildLabel);
 
     // Creating and adding 'Mild' <input> to radioDiv
@@ -94,7 +94,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Moderate' <label> to radioDiv
     const moderateLabel = document.createElement('label');
     moderateLabel.setAttribute('for', 'moderate');
-    noneLabel.innerText = 'moderate';
+    moderateLabel.innerText = 'moderate';
     radioDiv.appendChild(moderateLabel);
 
     // Creating and adding 'Moderate' <input> to radioDiv
@@ -109,7 +109,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Severe' <label> to radioDiv
     const severeLabel = document.createElement('label');
     severeLabel.setAttribute('for', 'severe');
-    noneLabel.innerText = 'severe';
+    severeLabel.innerText = 'severe';
     radioDiv.appendChild(severeLabel);
 
     // Creating and adding 'Severe' <input> to radioDiv
@@ -119,8 +119,6 @@ symptoms.forEach((element) => {
     severeInput.setAttribute('value', 3);
     severeInput.id = 'severe';
     radioDiv.appendChild(severeInput);
-
-    // Set the severity
 
     // Adding fieldset to <div> with corresponding symptom type
     if (element.type === 'physical') {
@@ -137,3 +135,5 @@ symptoms.forEach((element) => {
 const submitBtn = document.createElement('input');
 submitBtn.setAttribute('type', 'submit');
 form.appendChild(submitBtn);
+
+console.log(form);

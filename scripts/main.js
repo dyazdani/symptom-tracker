@@ -128,6 +128,22 @@ symptoms.forEach((element) => {
     if (element.type === 'mental') {
       mental.appendChild(fieldset);
     }
+
+    // Selecting severity of entry
+    const severityScale = {
+      0: 'none',
+      1: 'mild',
+      2: 'moderate',
+      3: 'severe',
+    };
+
+    const ChildrenOfRadioDiv = [...radioDiv.children];
+
+    ChildrenOfRadioDiv.forEach((child) => {
+      if (child.id === severityScale[element.severity]) {
+        child.setAttribute('checked', '');
+      }
+    });
   }
 });
 

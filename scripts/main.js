@@ -70,7 +70,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'None' <input> to radioDiv
     const noneInput = document.createElement('input');
     noneInput.setAttribute('type', 'radio');
-    noneInput.setAttribute('name', 'severity');
+    noneInput.setAttribute('name', element.name);
     noneInput.setAttribute('value', 0);
     noneInput.id = 'none';
     radioDiv.appendChild(noneInput);
@@ -85,7 +85,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Mild' <input> to radioDiv
     const mildInput = document.createElement('input');
     mildInput.setAttribute('type', 'radio');
-    mildInput.setAttribute('name', 'severity');
+    mildInput.setAttribute('name', element.name);
     mildInput.setAttribute('value', 1);
     mildInput.id = 'mild';
     radioDiv.appendChild(mildInput);
@@ -100,7 +100,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Moderate' <input> to radioDiv
     const moderateInput = document.createElement('input');
     moderateInput.setAttribute('type', 'radio');
-    moderateInput.setAttribute('name', 'severity');
+    moderateInput.setAttribute('name', element.name);
     moderateInput.setAttribute('value', 2);
     moderateInput.id = 'moderate';
     radioDiv.appendChild(moderateInput);
@@ -115,7 +115,7 @@ symptoms.forEach((element) => {
     // Creating and adding 'Severe' <input> to radioDiv
     const severeInput = document.createElement('input');
     severeInput.setAttribute('type', 'radio');
-    severeInput.setAttribute('name', 'severity');
+    severeInput.setAttribute('name', element.name);
     severeInput.setAttribute('value', 3);
     severeInput.id = 'severe';
     radioDiv.appendChild(severeInput);

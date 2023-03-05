@@ -6,13 +6,17 @@ const form = document.createElement('form');
 // Creating <div> elements for physical and mental symptom types
 const { symptoms } = data.user.entries[0];
 
+// For symptom type <div>s
+let physical;
+let mental;
+
 let physicalDivCreated = false;
 let mentalDivCreated = false;
 
 symptoms.forEach((element) => {
   if (element.type === 'physical' && !physicalDivCreated) {
     // Creating <div>
-    const physical = document.createElement('div');
+    physical = document.createElement('div');
     physical.id = 'physical';
     physicalDivCreated = true;
 
@@ -27,7 +31,7 @@ symptoms.forEach((element) => {
 
   if (element.type === 'mental' && !mentalDivCreated) {
     // Creating <div>
-    const mental = document.createElement('div');
+    mental = document.createElement('div');
     mental.id = 'mental';
     mentalDivCreated = true;
 
@@ -39,10 +43,8 @@ symptoms.forEach((element) => {
     // Adding <div> to <form>
     form.appendChild(mental);
   }
-});
 
-// Creating symptom name and severity entry to place in <div>
-symptoms.forEach((element) => {
+  // Creating symptom name and severity entry to place in <div>
   if (element.name) {
     // Creating <fieldset>
     const fieldset = document.createElement('fieldset');
@@ -117,6 +119,8 @@ symptoms.forEach((element) => {
     severeInput.setAttribute('value', 3);
     severeInput.id = 'severe';
     radioDiv.appendChild(severeInput);
+
+    // Set the severity
 
     // Adding fieldset to <div> with corresponding symptom type
     if (element.type === 'physical') {

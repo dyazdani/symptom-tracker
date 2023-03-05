@@ -180,3 +180,7 @@ mental.appendChild(newPhysicalSymptomButton);
 const submitBtn = document.createElement('input');
 submitBtn.setAttribute('type', 'submit');
 form.appendChild(submitBtn);
+
+// Add <form> to <section>
+const section = document.querySelector('section');
+section.appendChild(form);

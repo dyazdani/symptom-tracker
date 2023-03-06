@@ -41,9 +41,3 @@ fieldset {
   display: flex;
   flex-flow: column nowrap;
 }
-
-button#new-symptom {
-  display: flex;
-  flex-flow: row nowrap;
-  font-size: 40px;
-}

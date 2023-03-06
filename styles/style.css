@@ -31,3 +31,7 @@ fieldset {
   justify-content: space-around;
   border: none;
 }
+
+[checked] {
+  background: rgb(129, 129, 129);
+}

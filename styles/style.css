@@ -1,1 +1,9 @@
 /* Add your styles here */
+section {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+h1 {
+  font-size: x-large;
+}

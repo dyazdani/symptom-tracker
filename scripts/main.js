@@ -184,3 +184,12 @@ form.appendChild(submitBtn);
 // Add <form> to <section>
 const section = document.querySelector('section');
 section.appendChild(form);
+
+// Creating and adding date from data.json
+const { timestamp } = data.user.entries[0];
+
+const date = new Date(timestamp);
+const dateString = date.toDateString();
+
+const timeElement = document.getElementById('date');
+timeElement.innerText = dateString;

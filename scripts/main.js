@@ -2,6 +2,7 @@ const data = await fetch('./data/sample-data.json').then((response) => response.
 
 // Creating <form> node
 const form = document.createElement('form');
+form.id = 'symptom-list';
 
 // Creating <div> elements for physical and mental symptom types
 const { symptoms } = data.user.entries[0];
@@ -12,6 +13,13 @@ let mental;
 
 let physicalDivCreated = false;
 let mentalDivCreated = false;
+
+const severityScale = {
+  0: 'none',
+  1: 'mild',
+  2: 'moderate',
+  3: 'severe',
+};
 
 symptoms.forEach((element) => {
   if (element.type === 'physical' && !physicalDivCreated) {
@@ -55,70 +63,22 @@ symptoms.forEach((element) => {
     legend.innerText = element.name;
     fieldset.appendChild(legend);
 
-    // Creating and adding <div> for radio buttons
-    const radioDiv = document.createElement('div');
-    fieldset.appendChild(radioDiv);
+    // Creating and adding <div> for severity buttons
+    const buttonsDiv = document.createElement('div');
+    fieldset.appendChild(buttonsDiv);
 
-    // Creating radio buttons
-    // The 'None' button
-    // Creating and adding 'None' <label> to radioDiv
-    const noneLabel = document.createElement('label');
-    noneLabel.setAttribute('for', 'none');
-    noneLabel.innerText = 'none';
-    radioDiv.appendChild(noneLabel);
+    // Creating severity scale buttons
+    for (const property in severityScale) {
+      const severityRating = document.createElement('button');
+      severityRating.setAttribute('form', 'symptom-list');
+      severityRating.setAttribute('type', 'button');
+      severityRating.setAttribute('name', severityScale[property]);
+      severityRating.setAttribute('value', property);
+      severityRating.id = 'none';
 
-    // Creating and adding 'None' <input> to radioDiv
-    const noneInput = document.createElement('input');
-    noneInput.setAttribute('type', 'radio');
-    noneInput.setAttribute('name', element.name);
-    noneInput.setAttribute('value', 0);
-    noneInput.id = 'none';
-    radioDiv.appendChild(noneInput);
-
-    // The 'Mild' button
-    // Creating and adding 'Mild' <label> to radioDiv
-    const mildLabel = document.createElement('label');
-    mildLabel.setAttribute('for', 'mild');
-    mildLabel.innerText = 'mild';
-    radioDiv.appendChild(mildLabel);
-
-    // Creating and adding 'Mild' <input> to radioDiv
-    const mildInput = document.createElement('input');
-    mildInput.setAttribute('type', 'radio');
-    mildInput.setAttribute('name', element.name);
-    mildInput.setAttribute('value', 1);
-    mildInput.id = 'mild';
-    radioDiv.appendChild(mildInput);
-
-    // The 'Moderate' button
-    // Creating and adding 'Moderate' <label> to radioDiv
-    const moderateLabel = document.createElement('label');
-    moderateLabel.setAttribute('for', 'moderate');
-    moderateLabel.innerText = 'moderate';
-    radioDiv.appendChild(moderateLabel);
-
-    // Creating and adding 'Moderate' <input> to radioDiv
-    const moderateInput = document.createElement('input');
-    moderateInput.setAttribute('type', 'radio');
-    moderateInput.setAttribute('name', element.name);
-    moderateInput.setAttribute('value', 2);
-    moderateInput.id = 'moderate';
-    radioDiv.appendChild(moderateInput);
-
-    // The 'Severe' button
-    // Creating and adding 'Severe' <label> to radioDiv
-    const severeLabel = document.createElement('label');
-    severeLabel.setAttribute('for', 'severe');
-    severeLabel.innerText = 'severe';
-    radioDiv.appendChild(severeLabel);
-
-    // Creating and adding 'Severe' <input> to radioDiv
-    const severeInput = document.createElement('input');
-    severeInput.setAttribute('type', 'radio');
-    severeInput.setAttribute('name', element.name);
-    severeInput.setAttribute('value', 3);
-    severeInput.id = 'severe';
-    radioDiv.appendChild(severeInput);
+      severityRating.innerText = severityScale[property];
+      buttonsDiv.appendChild(severityRating);
+    }
 
     // Adding fieldset to <div> with corresponding symptom type
     if (element.type === 'physical') {
@@ -129,17 +89,10 @@ symptoms.forEach((element) => {
       mental.appendChild(fieldset);
     }
 
-    // Selecting severity of entry
-    const severityScale = {
-      0: 'none',
-      1: 'mild',
-      2: 'moderate',
-      3: 'severe',
-    };
+    // Selecting severity of symmptom from entry
+    const ChildrenOfButtonsDiv = [...buttonsDiv.children];
 
-    const ChildrenOfRadioDiv = [...radioDiv.children];
-
-    ChildrenOfRadioDiv.forEach((child) => {
+    ChildrenOfButtonsDiv.forEach((child) => {
       if (child.id === severityScale[element.severity]) {
         child.setAttribute('checked', '');
       }

@@ -18,6 +18,13 @@ main {
   border: 1px solid black;
 }
 
+h2 {
+  border: 1px solid black;
+  padding: 1rem;
+  margin-top: 0;
+  border-collapse: collapse;
+}
+
 form {
   display: flex;
   flex-flow: column nowrap;

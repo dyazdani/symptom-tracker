@@ -148,33 +148,23 @@ symptoms.forEach((element) => {
 });
 
 // Creating and adding "Add new symptom" buttons
-// For 'Physical' <div>
-const newPhysicalSymptomButton = document.createElement('button');
-newPhysicalSymptomButton.setAttribute('type', 'button');
+const formArray = [...form.children];
+formArray.forEach((element) => {
+  if (element.id === 'physical' || element.id === 'mental') {
+    const newSymptomButton = document.createElement('button');
+    newSymptomButton.setAttribute('type', 'button');
 
-const plusSymbolPhysical = document.createElement('p');
-plusSymbolPhysical.innerText = '+';
-newPhysicalSymptomButton.appendChild(plusSymbolPhysical);
+    const plusSymbol = document.createElement('p');
+    plusSymbol.innerText = '+';
+    newSymptomButton.appendChild(plusSymbol);
 
-const buttonTextPhysical = document.createElement('p');
-buttonTextPhysical.innerText = 'Add new symptom';
-newPhysicalSymptomButton.appendChild(buttonTextPhysical);
+    const buttonText = document.createElement('p');
+    buttonText.innerText = 'Add new symptom';
+    newSymptomButton.appendChild(buttonText);
 
-physical.appendChild(newPhysicalSymptomButton);
-
-// For 'Mental' <div>
-const newMentalSymptomButton = document.createElement('button');
-newMentalSymptomButton.setAttribute('type', 'button');
-
-const plusSymbolMental = document.createElement('p');
-plusSymbolMental.innerText = '+';
-newMentalSymptomButton.appendChild(plusSymbolMental);
-
-const buttonTextMental = document.createElement('p');
-buttonTextMental.innerText = 'Add new symptom';
-newMentalSymptomButton.appendChild(buttonTextMental);
-
-mental.appendChild(newPhysicalSymptomButton);
+    element.appendChild(newSymptomButton);
+  }
+});
 
 // Creating submit button for bottom of the form
 const submitBtn = document.createElement('input');

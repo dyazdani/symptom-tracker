@@ -23,23 +23,3 @@ h2 {
   padding: 1rem;
   margin-top: 0;
 }
-
-form {
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-#physical {
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-#mental {
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-fieldset div {
-  display: flex;
-  flex-flow: row nowrap;
-}

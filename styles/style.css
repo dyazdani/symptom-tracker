@@ -3,6 +3,8 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  background: rgb(202, 165, 239);
+  padding: 1rem;
 }
 
 body {

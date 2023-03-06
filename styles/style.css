@@ -1,9 +1,29 @@
-/* Add your styles here */
-section {
+body {
   display: flex;
   flex-flow: column nowrap;
 }
 
-h1 {
-  font-size: x-large;
+main {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#physical {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#mental {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+fieldset div {
+  display: flex;
+  flex-flow: row nowrap;
 }

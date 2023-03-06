@@ -78,6 +78,11 @@ symptoms.forEach((element) => {
 
       severityRating.innerText = severityScale[property];
       buttonsDiv.appendChild(severityRating);
+
+      // Setting the severity rating for symptom based on data.json
+      if (property == element.severity) {
+        severityRating.setAttribute('checked', '');
+      }
     }
 
     // Adding fieldset to <div> with corresponding symptom type
@@ -88,15 +93,6 @@ symptoms.forEach((element) => {
     if (element.type === 'mental') {
       mental.appendChild(fieldset);
     }
-
-    // Selecting severity of symmptom from entry
-    const ChildrenOfButtonsDiv = [...buttonsDiv.children];
-
-    ChildrenOfButtonsDiv.forEach((child) => {
-      if (child.id === severityScale[element.severity]) {
-        child.setAttribute('checked', '');
-      }
-    });
   }
 });
 

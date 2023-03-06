@@ -41,3 +41,10 @@ fieldset {
   display: flex;
   flex-flow: column nowrap;
 }
+
+input {
+  margin: 1rem 0;
+  padding: 0.25rem 1.25rem;
+  position: relative;
+  left: 80vw;
+}

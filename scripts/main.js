@@ -103,11 +103,11 @@ formArray.forEach((element) => {
     const newSymptomButton = document.createElement('button');
     newSymptomButton.setAttribute('type', 'button');
 
-    const plusSymbol = document.createElement('p');
+    const plusSymbol = document.createElement('span');
     plusSymbol.innerText = '+';
     newSymptomButton.appendChild(plusSymbol);
 
-    const buttonText = document.createElement('p');
+    const buttonText = document.createElement('span');
     buttonText.innerText = 'Add new symptom';
     newSymptomButton.appendChild(buttonText);
 

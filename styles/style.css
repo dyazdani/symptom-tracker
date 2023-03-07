@@ -48,6 +48,7 @@ input {
   padding: 0.25rem 1.25rem;
   position: relative;
   left: 80vw;
+  background: linear-gradient(120deg, rgb(210, 228, 239) 0%, rgb(165, 239, 190) 100%);
 }
 
 fieldset div button {

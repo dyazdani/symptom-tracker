@@ -36,8 +36,8 @@ fieldset {
   background: rgb(129, 129, 129);
 }
 
-#physical,
-#mental {
+div#physical,
+div#mental {
   display: flex;
   flex-flow: column nowrap;
 }

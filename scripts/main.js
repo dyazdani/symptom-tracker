@@ -105,6 +105,7 @@ formArray.forEach((element) => {
   if (element.id === 'physical' || element.id === 'mental') {
     const newSymptomButton = document.createElement('button');
     newSymptomButton.setAttribute('type', 'button');
+    newSymptomButton.id = element.id;
 
     const plusSymbol = document.createElement('span');
     plusSymbol.innerText = '+';

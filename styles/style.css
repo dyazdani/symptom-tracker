@@ -68,3 +68,8 @@ span {
 form {
   padding: 0 0.5rem;
 }
+
+button#physical,
+button#mental {
+  width: 50%;
+}

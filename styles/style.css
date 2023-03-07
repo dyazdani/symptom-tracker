@@ -53,12 +53,12 @@ input {
 legend {
   position: relative;
   top: 1.5rem;
-  left: 2rem;
+  left: 6rem;
 }
 
 fieldset div button {
-  padding: 0 1rem;
-  margin: 0 1rem;
+  padding: 0 0.5rem;
+  margin: 0 0.5rem;
 }
 
 span {
@@ -66,12 +66,12 @@ span {
 }
 
 form {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 
 button#physical,
 button#mental {
-  width: 75%;
+  width: 40%;
   align-self: center;
   margin-top: 1rem;
 }

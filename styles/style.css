@@ -3,8 +3,8 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  background: rgb(202, 165, 239);
-  padding: 1rem;
+  background: linear-gradient(120deg, rgb(210, 228, 239) 0%, rgb(165, 239, 190) 100%);
+  padding: 0 1rem;
   margin-bottom: 1rem;
 }
 

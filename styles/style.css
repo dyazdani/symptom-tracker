@@ -71,5 +71,7 @@ form {
 
 button#physical,
 button#mental {
-  width: 50%;
+  width: 75%;
+  align-self: center;
+  margin-top: 1rem;
 }

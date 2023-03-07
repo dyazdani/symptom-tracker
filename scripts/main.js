@@ -128,11 +128,13 @@ form.appendChild(submitBtn);
 const section = document.querySelector('section');
 section.appendChild(form);
 
-// Creating and adding date from data.json
-const { timestamp } = data.user.entries[0];
-
-const date = new Date(timestamp);
-const dateString = date.toDateString();
+// Creating and adding date
+const date = new Date().toLocaleDateString('en-us', {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
 
 const timeElement = document.getElementById('date');
-timeElement.innerText = dateString;
+timeElement.innerText = date;

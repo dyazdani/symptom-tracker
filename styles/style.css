@@ -1,3 +1,9 @@
+/* Styles on Initial Page */
+.no-record {
+  text-align: center;
+  padding: 2rem;
+}
+
 header {
   display: flex;
   flex-flow: row nowrap;
@@ -6,17 +12,21 @@ header {
   background: linear-gradient(120deg, rgb(210, 228, 239) 0%, rgb(165, 239, 190) 100%);
   padding: 0 1rem;
   margin-bottom: 1rem;
+  width: 98vw;
 }
 
 body {
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
 }
 
 main {
   display: flex;
   flex-flow: column nowrap;
   border: 1px solid black;
+  height: 84vh;
+  width: max-content;
 }
 
 h2 {

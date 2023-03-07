@@ -48,3 +48,14 @@ input {
   position: relative;
   left: 80vw;
 }
+
+legend {
+  position: relative;
+  top: 1.5rem;
+  left: 2rem;
+}
+
+fieldset div button {
+  padding: 0 1rem;
+  margin: 0 1rem;
+}

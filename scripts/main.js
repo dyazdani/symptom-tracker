@@ -60,6 +60,9 @@ symptoms.forEach((element) => {
 
     // Creating and adding <legend>
     const legend = document.createElement('legend');
+    // const legendText = document.createElement('span');
+    // legendText.innerText = element.name;
+    // legend.appendChild(legendText);
     legend.innerText = element.name;
     fieldset.appendChild(legend);
 
@@ -110,6 +113,8 @@ formArray.forEach((element) => {
     const buttonText = document.createElement('span');
     buttonText.innerText = 'Add new symptom';
     newSymptomButton.appendChild(buttonText);
+
+    newSymptomButton.id = `new-${element.id}-symptom`;
 
     element.appendChild(newSymptomButton);
   }

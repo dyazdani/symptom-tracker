@@ -114,8 +114,6 @@ formArray.forEach((element) => {
     buttonText.innerText = 'Add new symptom';
     newSymptomButton.appendChild(buttonText);
 
-    newSymptomButton.id = `new-${element.id}-symptom`;
-
     element.appendChild(newSymptomButton);
   }
 });

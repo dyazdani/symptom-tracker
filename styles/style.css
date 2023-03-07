@@ -30,7 +30,7 @@ fieldset {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
-  border: none;
+  margin-top: 0.5rem;
 }
 
 [checked] {
@@ -48,12 +48,6 @@ input {
   padding: 0.25rem 1.25rem;
   position: relative;
   left: 80vw;
-}
-
-legend {
-  position: relative;
-  top: 1.5rem;
-  left: 6rem;
 }
 
 fieldset div button {

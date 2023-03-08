@@ -15,9 +15,16 @@ timeElement.innerText = date;
 const form = document.createElement('form');
 form.id = 'symptom-list';
 
-// Create 'Create a New Record' button
-const addRecordBtn = document.querySelector('#add-record');
-addRecordBtn.addEventListener('click', (event) => {
+// Select <button> and <p> nodes for intial page
+const createRecordBtn = document.querySelector('#create-record');
+const noRecordP = document.querySelector('#no-record');
+
+// Create 'Create a New Record' button event listener
+createRecordBtn.addEventListener('click', (event) => {
+  // Disappear <p> and createRecordBtn
+  createRecordBtn.style.display = 'none';
+  noRecordP.style.display = 'none';
+
   // Create 'Phsyical' <div>
   const physical = document.createElement('div');
   physical.id = 'physical';

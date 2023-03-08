@@ -18,8 +18,8 @@ const noRecordP = document.querySelector('#no-record');
 // Create 'Create a New Record' button event listener
 createRecordBtn.addEventListener('click', (event) => {
   // Disappear <p> and createRecordBtn
-  createRecordBtn.style.display = 'none';
-  noRecordP.style.display = 'none';
+  createRecordBtn.remove();
+  noRecordP.remove();
 
   // Creating <form> node
   const form = document.createElement('form');

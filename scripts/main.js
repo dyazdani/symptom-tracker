@@ -49,12 +49,14 @@ createRecordBtn.addEventListener('click', (event) => {
   newPhysSymptom.setAttribute('type', 'text');
   newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
   newPhysSymptom.id = 'new-phys-symptom';
+  newPhysSymptom.setAttribute('minlength', 1);
   physical.appendChild(newPhysSymptom);
 
   // Create 'New Mental Symptom' <input>
   const newMentSymptom = document.createElement('input');
   newMentSymptom.setAttribute('type', 'text');
   newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
+  newMentSymptom.setAttribute('minlength', 1);
   newMentSymptom.id = 'new-ment-symptom';
   mental.appendChild(newMentSymptom);
 

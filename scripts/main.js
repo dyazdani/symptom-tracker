@@ -26,26 +26,30 @@ addRecordBtn.addEventListener('click', (event) => {
   const mental = document.createElement('div');
   mental.id = 'mental';
 
+  // Create <label>s
+  const newPhysLabel = document.createElement('label');
+  newPhysLabel.setAttribute('for', 'new-phys-symptom');
+  newPhysLabel.innerText = 'New Symptom';
+  physical.appendChild(newPhysLabel);
+
+  const newMentLabel = document.createElement('label');
+  newMentLabel.setAttribute('for', 'new-ment-symptom');
+  newMentLabel.innerText = 'New Symptom';
+  mental.appendChild(newMentLabel);
+
   // Create 'New Physical Symptom' <input>
   const newPhysSymptom = document.createElement('input');
   newPhysSymptom.setAttribute('type', 'text');
   newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
   newPhysSymptom.id = 'new-phys-symptom';
-
-  // Create <label>s
-  const newPhysLabel = document.createElement('label');
-  newPhysLabel.setAttribute('for', 'new-phys-symptom');
-  newPhysLabel.innerText = 'New Symptom';
-
-  const newMentLabel = document.createElement('label');
-  newMentLabel.setAttribute('for', 'new-ment-symptom');
-  newMentLabel.innerText = 'New Symptom';
+  physical.appendChild(newPhysSymptom);
 
   // Create 'New Mental Symptom' <input>
   const newMentSymptom = document.createElement('input');
   newMentSymptom.setAttribute('type', 'text');
   newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
   newMentSymptom.id = 'new-ment-symptom';
+  mental.appendChild(newMentSymptom);
 
   // Create Physical '+ Add' <button>
   const addPhysBtn = document.createElement('button');
@@ -61,6 +65,8 @@ addRecordBtn.addEventListener('click', (event) => {
   physBtnText.innerText = 'Add';
   addPhysBtn.appendChild(physBtnText);
 
+  physical.appendChild(addPhysBtn);
+
   // Create Mental '+ Add' <button>
   const addMentBtn = document.createElement('button');
   addMentBtn.setAttribute('type', 'button');
@@ -74,6 +80,8 @@ addRecordBtn.addEventListener('click', (event) => {
   const mentBtnText = document.createElement('span');
   mentBtnText.innerText = 'Add';
   addMentBtn.appendChild(mentBtnText);
+
+  mental.appendChild(addMentBtn);
 
   // Create submit <button>
   const submitBtn = document.createElement('button');

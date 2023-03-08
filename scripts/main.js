@@ -108,6 +108,7 @@ createRecordBtn.addEventListener('click', (event) => {
 
   // Create and add submit <button>
   const submitBtn = document.createElement('button');
+  submitBtn.setAttribute('disabled', '');
   submitBtn.innerText = 'Submit';
 
   form.appendChild(submitBtn);
@@ -116,6 +117,8 @@ createRecordBtn.addEventListener('click', (event) => {
   const section = document.querySelector('section');
   section.appendChild(form);
 });
+
+//
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
 

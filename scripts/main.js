@@ -33,6 +33,18 @@ addRecordBtn.addEventListener('click', (event) => {
   newMentSymptom.setAttribute('type', 'text');
   newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
   newMentSymptom.id = 'new-ment-symptom';
+
+  // Create Physical '+ Add' <button>
+  const addPhysBtn = document.createElement('button');
+  addPhysBtn.setAttribute('type', 'button');
+  addPhysBtn.classList.add = 'add-symptom';
+  addPhysBtn.id = 'add-phys-symptom';
+
+  // Create Mental '+ Add' <button>
+  const addMentBtn = document.createElement('button');
+  addMentBtn.setAttribute('type', 'button');
+  addMentBtn.classList.add = 'add-symptom';
+  addMentBtn.id = 'add-ment-symptom';
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

@@ -119,6 +119,29 @@ createRecordBtn.addEventListener('click', (event) => {
   section.appendChild(form);
 });
 
+// *---Event listeners to enable submit button---*
+addPhysBtn.addEventListener(
+  'click',
+  (event) => {
+    if (form.classList.contains('empty')) {
+      form.classList.remove('empty');
+      submitBtn.disabled = false;
+    }
+  },
+  { once: true },
+);
+
+addMentBtn.addEventListener(
+  'click',
+  (event) => {
+    if (form.classList.contains('empty')) {
+      form.classList.remove('empty');
+      submitBtn.disabled = false;
+    }
+  },
+  { once: true },
+);
+
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
 
 // // Creating <div> elements for physical and mental symptom types

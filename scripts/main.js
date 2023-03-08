@@ -1,4 +1,4 @@
-const data = await fetch('./data/sample-data.json').then((response) => response.json());
+// const data = await fetch('./data/sample-data.json').then((response) => response.json());
 
 // Creating and adding date
 const date = new Date().toLocaleDateString('en-us', {

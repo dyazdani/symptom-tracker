@@ -10,6 +10,18 @@ const date = new Date().toLocaleDateString('en-us', {
   year: 'numeric',
 });
 
+const record = {
+  user: {
+    name: 'Guest',
+    entries: [
+      {
+        timestamp: date,
+        symptoms: [],
+      },
+    ],
+  },
+};
+
 const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 

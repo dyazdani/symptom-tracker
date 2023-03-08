@@ -1,7 +1,12 @@
 /* Styles on Initial Page */
-.no-record {
+#no-record {
   text-align: center;
   padding: 2rem;
+}
+
+#add-record {
+  width: max-content;
+  align-self: center;
 }
 
 header {

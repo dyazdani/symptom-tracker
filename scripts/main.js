@@ -49,11 +49,27 @@ addRecordBtn.addEventListener('click', (event) => {
   addPhysBtn.classList.add = 'add-symptom';
   addPhysBtn.id = 'add-phys-symptom';
 
+  const plusSymbolPhys = document.createElement('span');
+  plusSymbolPhys.innerText = '+';
+  addPhysBtn.appendChild(plusSymbolPhys);
+
+  const physBtnText = document.createElement('span');
+  physBtnText.innerText = 'Add';
+  addPhysBtn.appendChild(physBtnText);
+
   // Create Mental '+ Add' <button>
   const addMentBtn = document.createElement('button');
   addMentBtn.setAttribute('type', 'button');
   addMentBtn.classList.add = 'add-symptom';
   addMentBtn.id = 'add-ment-symptom';
+
+  const plusSymbolMent = document.createElement('span');
+  plusSymbolMent.innerText = '+';
+  addMentBtn.appendChild(plusSymbolMent);
+
+  const mentBtnText = document.createElement('span');
+  mentBtnText.innerText = 'Add';
+  addMentBtn.appendChild(mentBtnText);
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

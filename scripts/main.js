@@ -33,6 +33,16 @@ createRecordBtn.addEventListener('click', (event) => {
   const mental = document.createElement('div');
   mental.id = 'mental';
 
+  // Creating <h3> for title of physical <div>
+  const physicalTitle = document.createElement('h3');
+  physicalTitle.innerText = 'Physical';
+  physical.appendChild(physicalTitle);
+
+  // Creating <h3> for title of mental <div>
+  const mentalTitle = document.createElement('h3');
+  mentalTitle.innerText = 'Mental';
+  mental.appendChild(mentalTitle);
+
   // Create <label>s
   const newPhysLabel = document.createElement('label');
   newPhysLabel.setAttribute('for', 'new-phys-symptom');
@@ -133,25 +143,11 @@ createRecordBtn.addEventListener('click', (event) => {
 //     physical.id = 'physical';
 //     physicalDivCreated = true;
 
-//     // Creating <h3> (aka title of <div>)
-//     const physicalTitle = document.createElement('h3');
-//     physicalTitle.innerText = 'Physical';
-//     physical.appendChild(physicalTitle);
-
-//     // Adding <div> to <form>
-//     form.appendChild(physical);
-//   }
-
 //   if (element.type === 'mental' && !mentalDivCreated) {
 //     // Creating <div>
 //     mental = document.createElement('div');
 //     mental.id = 'mental';
 //     mentalDivCreated = true;
-
-//     // Creating <h3> (aka title of <div>)
-//     const mentalTitle = document.createElement('h3');
-//     mentalTitle.innerText = 'Mental';
-//     mental.appendChild(mentalTitle);
 
 //     // Adding <div> to <form>
 //     form.appendChild(mental);

@@ -55,6 +55,7 @@ newPhysSymptom.setAttribute('type', 'text');
 newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
 newPhysSymptom.id = 'new-phys-symptom';
 newPhysSymptom.setAttribute('minlength', 1);
+newPhysSymptom.placeholder = 'Type here to add symptom';
 physical.appendChild(newPhysSymptom);
 
 // Create 'New Mental Symptom' <input>
@@ -62,6 +63,7 @@ const newMentSymptom = document.createElement('input');
 newMentSymptom.setAttribute('type', 'text');
 newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
 newMentSymptom.setAttribute('minlength', 1);
+newMentSymptom.placeholder = 'Type here to add symptom';
 newMentSymptom.id = 'new-ment-symptom';
 mental.appendChild(newMentSymptom);
 
@@ -69,6 +71,7 @@ mental.appendChild(newMentSymptom);
 const addPhysBtn = document.createElement('button');
 addPhysBtn.setAttribute('type', 'button');
 addPhysBtn.classList.add = 'add-symptom';
+addPhysBtn.disabled = true;
 addPhysBtn.id = 'add-phys-symptom';
 
 const plusSymbolPhys = document.createElement('span');
@@ -84,6 +87,7 @@ physical.appendChild(addPhysBtn);
 // Create Mental '+ Add' <button>
 const addMentBtn = document.createElement('button');
 addMentBtn.setAttribute('type', 'button');
+addMentBtn.disabled = true;
 addMentBtn.classList.add = 'add-symptom';
 addMentBtn.id = 'add-ment-symptom';
 

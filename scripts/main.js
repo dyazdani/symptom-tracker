@@ -28,6 +28,15 @@ addRecordBtn.addEventListener('click', (event) => {
   newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
   newPhysSymptom.id = 'new-phys-symptom';
 
+  // Create <label>s
+  const newPhysLabel = document.createElement('label');
+  newPhysLabel.setAttribute('for', 'new-phys-symptom');
+  newPhysLabel.innerText = 'New Symptom';
+
+  const newMentLabel = document.createElement('label');
+  newMentLabel.setAttribute('for', 'new-ment-symptom');
+  newMentLabel.innerText = 'New Symptom';
+
   // Create 'New Mental Symptom' <input>
   const newMentSymptom = document.createElement('input');
   newMentSymptom.setAttribute('type', 'text');

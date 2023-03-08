@@ -11,6 +11,18 @@ const date = new Date().toLocaleDateString('en-us', {
 const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 
+// Create 'Create a New Record' button
+const addRecordBtn = document.querySelector('#add-record');
+addRecordBtn.addEventListener('click', (event) => {
+  // Create 'Phsyical' <div>
+  const physical = document.createElement('div');
+  physical.id = 'physical';
+
+  // Create 'Mental' <div>
+  const mental = document.createElement('div');
+  mental.id = 'mental';
+});
+
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
 
 // // Creating <form> node

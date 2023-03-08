@@ -11,6 +11,10 @@ const date = new Date().toLocaleDateString('en-us', {
 const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 
+// Creating <form> node
+const form = document.createElement('form');
+form.id = 'symptom-list';
+
 // Create 'Create a New Record' button
 const addRecordBtn = document.querySelector('#add-record');
 addRecordBtn.addEventListener('click', (event) => {
@@ -77,10 +81,6 @@ addRecordBtn.addEventListener('click', (event) => {
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
-
-// // Creating <form> node
-// const form = document.createElement('form');
-// form.id = 'symptom-list';
 
 // // Creating <div> elements for physical and mental symptom types
 // const { symptoms } = data.user.entries[0];

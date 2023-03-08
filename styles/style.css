@@ -21,10 +21,19 @@ header {
   width: 100%;
 }
 
+h1 {
+  padding-left: 2rem;
+}
+
+#profile-image {
+  padding-right: 2rem;
+}
+
 body {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  margin: 0;
 }
 
 main {

@@ -123,6 +123,23 @@ createRecordBtn.addEventListener('click', (event) => {
   section.appendChild(form);
 });
 
+// *---Event listeners to enable '+ Add' buttons---*
+newPhysSymptom.addEventListener('input', (event) => {
+  if (event.target.value) {
+    addPhysBtn.disabled = false;
+  } else {
+    addPhysBtn.disabled = true;
+  }
+});
+
+newMentSymptom.addEventListener('input', (event) => {
+  if (event.target.value) {
+    addMentBtn.disabled = false;
+  } else {
+    addMentBtn.disabled = true;
+  }
+});
+
 // *---Event listeners to enable submit button---*
 addPhysBtn.addEventListener(
   'click',

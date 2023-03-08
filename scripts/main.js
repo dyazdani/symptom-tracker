@@ -22,11 +22,17 @@ addRecordBtn.addEventListener('click', (event) => {
   const mental = document.createElement('div');
   mental.id = 'mental';
 
-  // Create 'New Symptom' <input>
-  const newSymptom = document.createElement('input');
-  newSymptom.setAttribute('type', 'text');
-  newSymptom.setAttribute('name', 'name');
-  newSymptom.id = 'new-symptom';
+  // Create 'New Physical Symptom' <input>
+  const newPhysSymptom = document.createElement('input');
+  newPhysSymptom.setAttribute('type', 'text');
+  newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
+  newPhysSymptom.id = 'new-phys-symptom';
+
+  // Create 'New Mental Symptom' <input>
+  const newMentSymptom = document.createElement('input');
+  newMentSymptom.setAttribute('type', 'text');
+  newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
+  newMentSymptom.id = 'new-ment-symptom';
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

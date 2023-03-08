@@ -11,10 +11,6 @@ const date = new Date().toLocaleDateString('en-us', {
 const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 
-// Creating <form> node
-const form = document.createElement('form');
-form.id = 'symptom-list';
-
 // Select <button> and <p> nodes for intial page
 const createRecordBtn = document.querySelector('#create-record');
 const noRecordP = document.querySelector('#no-record');
@@ -24,6 +20,10 @@ createRecordBtn.addEventListener('click', (event) => {
   // Disappear <p> and createRecordBtn
   createRecordBtn.style.display = 'none';
   noRecordP.style.display = 'none';
+
+  // Creating <form> node
+  const form = document.createElement('form');
+  form.id = 'symptom-list';
 
   // Create 'Phsyical' <div>
   const physical = document.createElement('div');
@@ -99,6 +99,10 @@ createRecordBtn.addEventListener('click', (event) => {
   submitBtn.innerText = 'Submit';
 
   form.appendChild(submitBtn);
+
+  // Add <form> to <section>
+  const section = document.querySelector('section');
+  section.appendChild(form);
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

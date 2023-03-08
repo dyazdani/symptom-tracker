@@ -42,6 +42,7 @@ h2 {
   text-align: center;
 }
 
+/* Styles after record is created */
 fieldset {
   display: flex;
   flex-flow: row nowrap;

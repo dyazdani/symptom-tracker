@@ -1,4 +1,6 @@
 // const data = await fetch('./data/sample-data.json').then((response) => response.json());
+// Exceptions for Code Spell Checker extension in VS Code
+// cspell: ignore ment
 
 // Creating and adding date
 const date = new Date().toLocaleDateString('en-us', {
@@ -11,7 +13,7 @@ const date = new Date().toLocaleDateString('en-us', {
 const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 
-// Select <button> and <p> nodes for intial page
+// Select <button> and <p> nodes for initial page
 const createRecordBtn = document.querySelector('#create-record');
 const noRecordP = document.querySelector('#no-record');
 
@@ -20,7 +22,7 @@ const form = document.createElement('form');
 form.classList.add('empty');
 form.id = 'symptom-list';
 
-// Create 'Phsyical' <div>
+// Create 'Physical' <div>
 const physical = document.createElement('div');
 physical.id = 'physical';
 
@@ -113,7 +115,7 @@ submitBtn.innerText = 'Submit';
 form.appendChild(submitBtn);
 
 // *---Create 'Create a New Record' button event listener---*
-createRecordBtn.addEventListener('click', (event) => {
+createRecordBtn.addEventListener('click', () => {
   // Disappear <p> and createRecordBtn
   createRecordBtn.remove();
   noRecordP.remove();
@@ -143,7 +145,7 @@ newMentSymptom.addEventListener('input', (event) => {
 // *---Event listeners to enable submit button---*
 addPhysBtn.addEventListener(
   'click',
-  (event) => {
+  () => {
     if (form.classList.contains('empty')) {
       form.classList.remove('empty');
       submitBtn.disabled = false;
@@ -154,7 +156,7 @@ addPhysBtn.addEventListener(
 
 addMentBtn.addEventListener(
   'click',
-  (event) => {
+  () => {
     if (form.classList.contains('empty')) {
       form.classList.remove('empty');
       submitBtn.disabled = false;

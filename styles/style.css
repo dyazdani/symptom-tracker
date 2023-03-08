@@ -12,7 +12,7 @@ header {
   background: linear-gradient(120deg, rgb(210, 228, 239) 0%, rgb(165, 239, 190) 100%);
   padding: 0 1rem;
   margin-bottom: 1rem;
-  width: 98vw;
+  width: 100%;
 }
 
 body {

@@ -21,6 +21,12 @@ addRecordBtn.addEventListener('click', (event) => {
   // Create 'Mental' <div>
   const mental = document.createElement('div');
   mental.id = 'mental';
+
+  // Create 'New Symptom' <input>
+  const newSymptom = document.createElement('input');
+  newSymptom.setAttribute('type', 'text');
+  newSymptom.setAttribute('name', 'name');
+  newSymptom.id = 'new-symptom';
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

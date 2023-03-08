@@ -70,6 +70,10 @@ addRecordBtn.addEventListener('click', (event) => {
   const mentBtnText = document.createElement('span');
   mentBtnText.innerText = 'Add';
   addMentBtn.appendChild(mentBtnText);
+
+  // Create submit <button>
+  const submitBtn = document.createElement('button');
+  submitBtn.innerText = 'Submit';
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
@@ -192,11 +196,6 @@ addRecordBtn.addEventListener('click', (event) => {
 //     element.appendChild(newSymptomButton);
 //   }
 // });
-
-// // Creating submit button for bottom of the form
-// const submitBtn = document.createElement('input');
-// submitBtn.setAttribute('type', 'submit');
-// form.appendChild(submitBtn);
 
 // // Add <form> to <section>
 // const section = document.querySelector('section');

@@ -15,110 +15,109 @@ timeElement.innerText = date;
 const createRecordBtn = document.querySelector('#create-record');
 const noRecordP = document.querySelector('#no-record');
 
-// Create 'Create a New Record' button event listener
+// Creating <form> node
+const form = document.createElement('form');
+form.classList.add('empty');
+form.id = 'symptom-list';
+
+// Create 'Phsyical' <div>
+const physical = document.createElement('div');
+physical.id = 'physical';
+
+// Create 'Mental' <div>
+const mental = document.createElement('div');
+mental.id = 'mental';
+
+// Creating <h3> for title of physical <div>
+const physicalTitle = document.createElement('h3');
+physicalTitle.innerText = 'Physical';
+physical.appendChild(physicalTitle);
+
+// Creating <h3> for title of mental <div>
+const mentalTitle = document.createElement('h3');
+mentalTitle.innerText = 'Mental';
+mental.appendChild(mentalTitle);
+
+// Create <label>s
+const newPhysLabel = document.createElement('label');
+newPhysLabel.setAttribute('for', 'new-phys-symptom');
+newPhysLabel.innerText = 'New Symptom';
+physical.appendChild(newPhysLabel);
+
+const newMentLabel = document.createElement('label');
+newMentLabel.setAttribute('for', 'new-ment-symptom');
+newMentLabel.innerText = 'New Symptom';
+mental.appendChild(newMentLabel);
+
+// Create 'New Physical Symptom' <input>
+const newPhysSymptom = document.createElement('input');
+newPhysSymptom.setAttribute('type', 'text');
+newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
+newPhysSymptom.id = 'new-phys-symptom';
+newPhysSymptom.setAttribute('minlength', 1);
+physical.appendChild(newPhysSymptom);
+
+// Create 'New Mental Symptom' <input>
+const newMentSymptom = document.createElement('input');
+newMentSymptom.setAttribute('type', 'text');
+newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
+newMentSymptom.setAttribute('minlength', 1);
+newMentSymptom.id = 'new-ment-symptom';
+mental.appendChild(newMentSymptom);
+
+// Create Physical '+ Add' <button>
+const addPhysBtn = document.createElement('button');
+addPhysBtn.setAttribute('type', 'button');
+addPhysBtn.classList.add = 'add-symptom';
+addPhysBtn.id = 'add-phys-symptom';
+
+const plusSymbolPhys = document.createElement('span');
+plusSymbolPhys.innerText = '+';
+addPhysBtn.appendChild(plusSymbolPhys);
+
+const physBtnText = document.createElement('span');
+physBtnText.innerText = 'Add';
+addPhysBtn.appendChild(physBtnText);
+
+physical.appendChild(addPhysBtn);
+
+// Create Mental '+ Add' <button>
+const addMentBtn = document.createElement('button');
+addMentBtn.setAttribute('type', 'button');
+addMentBtn.classList.add = 'add-symptom';
+addMentBtn.id = 'add-ment-symptom';
+
+const plusSymbolMent = document.createElement('span');
+plusSymbolMent.innerText = '+';
+addMentBtn.appendChild(plusSymbolMent);
+
+const mentBtnText = document.createElement('span');
+mentBtnText.innerText = 'Add';
+addMentBtn.appendChild(mentBtnText);
+
+mental.appendChild(addMentBtn);
+
+// Add phys and ment <div>s to <form>
+form.appendChild(physical);
+form.appendChild(mental);
+
+// Create and add submit <button>
+const submitBtn = document.createElement('button');
+submitBtn.setAttribute('disabled', '');
+submitBtn.innerText = 'Submit';
+
+form.appendChild(submitBtn);
+
+// *---Create 'Create a New Record' button event listener---*
 createRecordBtn.addEventListener('click', (event) => {
   // Disappear <p> and createRecordBtn
   createRecordBtn.remove();
   noRecordP.remove();
 
-  // Creating <form> node
-  const form = document.createElement('form');
-  form.id = 'symptom-list';
-
-  // Create 'Phsyical' <div>
-  const physical = document.createElement('div');
-  physical.id = 'physical';
-
-  // Create 'Mental' <div>
-  const mental = document.createElement('div');
-  mental.id = 'mental';
-
-  // Creating <h3> for title of physical <div>
-  const physicalTitle = document.createElement('h3');
-  physicalTitle.innerText = 'Physical';
-  physical.appendChild(physicalTitle);
-
-  // Creating <h3> for title of mental <div>
-  const mentalTitle = document.createElement('h3');
-  mentalTitle.innerText = 'Mental';
-  mental.appendChild(mentalTitle);
-
-  // Create <label>s
-  const newPhysLabel = document.createElement('label');
-  newPhysLabel.setAttribute('for', 'new-phys-symptom');
-  newPhysLabel.innerText = 'New Symptom';
-  physical.appendChild(newPhysLabel);
-
-  const newMentLabel = document.createElement('label');
-  newMentLabel.setAttribute('for', 'new-ment-symptom');
-  newMentLabel.innerText = 'New Symptom';
-  mental.appendChild(newMentLabel);
-
-  // Create 'New Physical Symptom' <input>
-  const newPhysSymptom = document.createElement('input');
-  newPhysSymptom.setAttribute('type', 'text');
-  newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
-  newPhysSymptom.id = 'new-phys-symptom';
-  newPhysSymptom.setAttribute('minlength', 1);
-  physical.appendChild(newPhysSymptom);
-
-  // Create 'New Mental Symptom' <input>
-  const newMentSymptom = document.createElement('input');
-  newMentSymptom.setAttribute('type', 'text');
-  newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
-  newMentSymptom.setAttribute('minlength', 1);
-  newMentSymptom.id = 'new-ment-symptom';
-  mental.appendChild(newMentSymptom);
-
-  // Create Physical '+ Add' <button>
-  const addPhysBtn = document.createElement('button');
-  addPhysBtn.setAttribute('type', 'button');
-  addPhysBtn.classList.add = 'add-symptom';
-  addPhysBtn.id = 'add-phys-symptom';
-
-  const plusSymbolPhys = document.createElement('span');
-  plusSymbolPhys.innerText = '+';
-  addPhysBtn.appendChild(plusSymbolPhys);
-
-  const physBtnText = document.createElement('span');
-  physBtnText.innerText = 'Add';
-  addPhysBtn.appendChild(physBtnText);
-
-  physical.appendChild(addPhysBtn);
-
-  // Create Mental '+ Add' <button>
-  const addMentBtn = document.createElement('button');
-  addMentBtn.setAttribute('type', 'button');
-  addMentBtn.classList.add = 'add-symptom';
-  addMentBtn.id = 'add-ment-symptom';
-
-  const plusSymbolMent = document.createElement('span');
-  plusSymbolMent.innerText = '+';
-  addMentBtn.appendChild(plusSymbolMent);
-
-  const mentBtnText = document.createElement('span');
-  mentBtnText.innerText = 'Add';
-  addMentBtn.appendChild(mentBtnText);
-
-  mental.appendChild(addMentBtn);
-
-  // Add phys and ment <div>s to <form>
-  form.appendChild(physical);
-  form.appendChild(mental);
-
-  // Create and add submit <button>
-  const submitBtn = document.createElement('button');
-  submitBtn.setAttribute('disabled', '');
-  submitBtn.innerText = 'Submit';
-
-  form.appendChild(submitBtn);
-
   // Add <form> to <section>
   const section = document.querySelector('section');
   section.appendChild(form);
 });
-
-//
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
 

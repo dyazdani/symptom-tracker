@@ -83,9 +83,15 @@ addRecordBtn.addEventListener('click', (event) => {
 
   mental.appendChild(addMentBtn);
 
-  // Create submit <button>
+  // Add phys and ment <div>s to <form>
+  form.appendChild(physical);
+  form.appendChild(mental);
+
+  // Create and add submit <button>
   const submitBtn = document.createElement('button');
   submitBtn.innerText = 'Submit';
+
+  form.appendChild(submitBtn);
 });
 
 // ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **

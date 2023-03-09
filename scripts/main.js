@@ -180,21 +180,32 @@ newMentSymptom.addEventListener('input', (event) => {
 
 // Event listener on new physical symptom <button>
 addPhysBtn.addEventListener('click', () => {
+  // Enable submit button
   submitBtn.disabled = false;
 
+  // Create and add blank physical symptom
   const newSymptom = {
-    name: '',
+    name: newPhysSymptom.value,
     severity: undefined,
     type: 'physical',
   };
 
-  entries.push(newSymptom);
-  console.log(entries);
+  symptoms.push(newSymptom);
 });
 
 // Event listener on new mental symptom <button>
 addMentBtn.addEventListener('click', () => {
+  // Enable submit button
   submitBtn.disabled = false;
+
+  // Create and add blank physical symptom
+  const newSymptom = {
+    name: newMentSymptom.value,
+    severity: undefined,
+    type: 'physical',
+  };
+
+  symptoms.push(newSymptom);
 });
 
 // --------------------------------------------------------------------------------------

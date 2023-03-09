@@ -140,7 +140,7 @@ form.appendChild(submitBtn);
 
 // --------------------------------------------------------------------------------
 
-// *------------ Creating an event listener for 'Create a New Record' ------------*
+// *--------- Creating event listener to 'Create a New Record' on click -----------*
 
 createRecordBtn.addEventListener('click', () => {
   // Disappear <p> and createRecordBtn <button>
@@ -152,9 +152,9 @@ createRecordBtn.addEventListener('click', () => {
   section.appendChild(form);
 });
 
-// --------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
-// *-------------- Adding event listeners to enable '+ Add' buttons --------------*
+// *---- Creating event listeners to enable '+ Add' buttons when content is in <input> -----*
 
 // Enable new physical symptom button
 newPhysSymptom.addEventListener('input', (event) => {
@@ -174,11 +174,11 @@ newMentSymptom.addEventListener('input', (event) => {
   }
 });
 
-// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------
 
-// *-------------- Adding event listeners to enable submit button --------------*
+// *--- Creating event listeners to enable submit button when symptoms are added to record ----*
 
-// Event listener on button to add new physical symptom
+// Event listener on new physical symptom <button>
 addPhysBtn.addEventListener('click', () => {
   if (form.classList.contains('empty')) {
     form.classList.remove('empty');
@@ -195,7 +195,7 @@ addPhysBtn.addEventListener('click', () => {
   console.log(symptoms);
 });
 
-// Event listener on button to add new mental symptom
+// Event listener on new mental symptom <button>
 addMentBtn.addEventListener(
   'click',
   () => {

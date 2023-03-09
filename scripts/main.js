@@ -1,8 +1,13 @@
 // const data = await fetch('./data/sample-data.json').then((response) => response.json());
+
 // Exceptions for Code Spell Checker extension in VS Code
 // cspell: ignore ment
 
-// Creating and adding date
+// -------------------------------------------------------------------------------
+
+// *--------------- Establishing initial state of the app -----------------------*
+
+// Creating current date and putting it in an element to append to <h2> in <main>
 const date = new Date().toLocaleDateString('en-us', {
   weekday: 'long',
   month: 'long',
@@ -10,6 +15,10 @@ const date = new Date().toLocaleDateString('en-us', {
   year: 'numeric',
 });
 
+const timeElement = document.getElementById('date');
+timeElement.innerText = date;
+
+// Creating object for storing the current state of the app
 const record = {
   user: {
     name: 'Guest',
@@ -22,37 +31,40 @@ const record = {
   },
 };
 
-const timeElement = document.getElementById('date');
-timeElement.innerText = date;
+const { entries, timestamp, symptoms } = record; // destructuring object for later use
 
-// Select <button> and <p> nodes for initial page
+// Selecting initial <button> and <p> nodes in <main>
 const createRecordBtn = document.querySelector('#create-record');
 const noRecordP = document.querySelector('#no-record');
 
+// -------------------------------------------------------------------------------
+
+// *------ Establishing state after 'Create a New Record' button is clicked ------*
+
 // Creating <form> node
 const form = document.createElement('form');
-form.classList.add('empty');
+form.classList.add('empty'); // will be used to disable submit button when no symptoms in record
 form.id = 'symptom-list';
 
-// Create 'Physical' <div>
+// Creating 'Physical' <div> node
 const physical = document.createElement('div');
 physical.id = 'physical';
 
-// Create 'Mental' <div>
+// Creating 'Mental' <div> node
 const mental = document.createElement('div');
 mental.id = 'mental';
 
-// Creating <h3> for title of physical <div>
+// Creating <h3> for title of Physical <div> and appending it
 const physicalTitle = document.createElement('h3');
 physicalTitle.innerText = 'Physical';
 physical.appendChild(physicalTitle);
 
-// Creating <h3> for title of mental <div>
+// Creating <h3> for title of Mental <div> and appending it
 const mentalTitle = document.createElement('h3');
 mentalTitle.innerText = 'Mental';
 mental.appendChild(mentalTitle);
 
-// Create <label>s
+// Creating and appending <label> elements for text <input> elements
 const newPhysLabel = document.createElement('label');
 newPhysLabel.setAttribute('for', 'new-phys-symptom');
 newPhysLabel.innerText = 'New Symptom';
@@ -63,7 +75,7 @@ newMentLabel.setAttribute('for', 'new-ment-symptom');
 newMentLabel.innerText = 'New Symptom';
 mental.appendChild(newMentLabel);
 
-// Create 'New Physical Symptom' <input>
+// Creating and appending <input> for adding a new physical symptom to record
 const newPhysSymptom = document.createElement('input');
 newPhysSymptom.setAttribute('type', 'text');
 newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');
@@ -72,7 +84,7 @@ newPhysSymptom.setAttribute('minlength', 1);
 newPhysSymptom.placeholder = 'Type here to add symptom';
 physical.appendChild(newPhysSymptom);
 
-// Create 'New Mental Symptom' <input>
+// Creating and appending <input> for adding a new mental symptom to record
 const newMentSymptom = document.createElement('input');
 newMentSymptom.setAttribute('type', 'text');
 newMentSymptom.setAttribute('name', 'new-ment-symptom-name');
@@ -81,7 +93,7 @@ newMentSymptom.placeholder = 'Type here to add symptom';
 newMentSymptom.id = 'new-ment-symptom';
 mental.appendChild(newMentSymptom);
 
-// Create Physical '+ Add' <button>
+// Creating and appending a '+ Add' <button> to Physical <div>
 const addPhysBtn = document.createElement('button');
 addPhysBtn.setAttribute('type', 'button');
 addPhysBtn.classList.add = 'add-symptom';
@@ -98,7 +110,7 @@ addPhysBtn.appendChild(physBtnText);
 
 physical.appendChild(addPhysBtn);
 
-// Create Mental '+ Add' <button>
+// Creating and appending a '+ Add' <button> to Mental <div>
 const addMentBtn = document.createElement('button');
 addMentBtn.setAttribute('type', 'button');
 addMentBtn.disabled = true;
@@ -115,29 +127,36 @@ addMentBtn.appendChild(mentBtnText);
 
 mental.appendChild(addMentBtn);
 
-// Add phys and ment <div>s to <form>
+// Appending Physical and Mental <div>s to <form>
 form.appendChild(physical);
 form.appendChild(mental);
 
-// Create and add submit <button>
+// Creating and appending submit <button> to <form>
 const submitBtn = document.createElement('button');
 submitBtn.setAttribute('disabled', '');
 submitBtn.innerText = 'Submit';
 
 form.appendChild(submitBtn);
 
-// *---Create 'Create a New Record' button event listener---*
+// --------------------------------------------------------------------------------
+
+// *------------ Creating an event listener for 'Create a New Record' ------------*
+
 createRecordBtn.addEventListener('click', () => {
-  // Disappear <p> and createRecordBtn
+  // Disappear <p> and createRecordBtn <button>
   createRecordBtn.remove();
   noRecordP.remove();
 
-  // Add <form> to <section>
+  // Append <form> to <section> in order to populate the HTML
   const section = document.querySelector('section');
   section.appendChild(form);
 });
 
-// *---Event listeners to enable '+ Add' buttons---*
+// --------------------------------------------------------------------------------
+
+// *-------------- Adding event listeners to enable '+ Add' buttons --------------*
+
+// Enable new physical symptom button
 newPhysSymptom.addEventListener('input', (event) => {
   if (event.target.value) {
     addPhysBtn.disabled = false;
@@ -146,6 +165,7 @@ newPhysSymptom.addEventListener('input', (event) => {
   }
 });
 
+// Enable new mental symptom button
 newMentSymptom.addEventListener('input', (event) => {
   if (event.target.value) {
     addMentBtn.disabled = false;
@@ -154,18 +174,28 @@ newMentSymptom.addEventListener('input', (event) => {
   }
 });
 
-// *---Event listeners to enable submit button---*
-addPhysBtn.addEventListener(
-  'click',
-  () => {
-    if (form.classList.contains('empty')) {
-      form.classList.remove('empty');
-      submitBtn.disabled = false;
-    }
-  },
-  { once: true },
-);
+// --------------------------------------------------------------------------------
 
+// *-------------- Adding event listeners to enable submit button --------------*
+
+// Event listener on button to add new physical symptom
+addPhysBtn.addEventListener('click', () => {
+  if (form.classList.contains('empty')) {
+    form.classList.remove('empty');
+    submitBtn.disabled = false;
+  }
+
+  const newSymptom = {
+    name: '',
+    severity: undefined,
+    type: 'physical',
+  };
+
+  symptoms.push(newSymptom);
+  console.log(symptoms);
+});
+
+// Event listener on button to add new mental symptom
 addMentBtn.addEventListener(
   'click',
   () => {
@@ -177,7 +207,11 @@ addMentBtn.addEventListener(
   { once: true },
 );
 
-// ** ----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED ------ **
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
+// *----- BELOW IS CODE TO DRAW FROM FOR FUNCTIONALITY AFTER NEW RECORD IS CREATED -----*
 
 // // Creating <div> elements for physical and mental symptom types
 // const { symptoms } = data.user.entries[0];

@@ -158,19 +158,19 @@ createRecordBtn.addEventListener('click', () => {
 
 // Enable new physical symptom button
 newPhysSymptom.addEventListener('input', (event) => {
-  if (event.target.value) {
-    addPhysBtn.disabled = false;
-  } else {
+  if (event.target.value === '') {
     addPhysBtn.disabled = true;
+  } else {
+    addPhysBtn.disabled = false;
   }
 });
 
 // Enable new mental symptom button
 newMentSymptom.addEventListener('input', (event) => {
-  if (event.target.value) {
-    addMentBtn.disabled = false;
-  } else {
+  if (event.target.value === '') {
     addMentBtn.disabled = true;
+  } else {
+    addMentBtn.disabled = false;
   }
 });
 
@@ -190,6 +190,9 @@ addPhysBtn.addEventListener('click', () => {
     type: 'physical',
   };
 
+  newPhysSymptom.value = '';
+  addPhysBtn.disabled = true;
+
   symptoms.push(newSymptom);
 });
 
@@ -204,6 +207,9 @@ addMentBtn.addEventListener('click', () => {
     severity: undefined,
     type: 'physical',
   };
+
+  newMentSymptom.value = '';
+  addMentBtn.disabled = true;
 
   symptoms.push(newSymptom);
 });

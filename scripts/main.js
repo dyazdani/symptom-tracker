@@ -75,7 +75,7 @@ newMentLabel.setAttribute('for', 'new-ment-symptom');
 newMentLabel.innerText = 'New Symptom';
 mental.appendChild(newMentLabel);
 
-// Creating and appending <input> for adding a new physical symptom to record
+// Creating and appending text <input> for adding a new physical symptom to record
 const newPhysSymptom = document.createElement('input');
 newPhysSymptom.setAttribute('type', 'text');
 newPhysSymptom.setAttribute('name', 'new-phys-symptom-name');

@@ -46,33 +46,33 @@ const form = document.createElement('form');
 form.classList.add('empty'); // will be used to disable submit button when no symptoms in record
 form.id = 'symptom-list';
 
-// ***
+// -----
 
 // Creating 'Physical' <div> node
 const physical = document.createElement('div');
 physical.id = 'physical';
 
-// ***
+// -----
 
 // Creating 'Mental' <div> node
 const mental = document.createElement('div');
 mental.id = 'mental';
 
-// ***
+// -----
 
 // Creating <h3> for title of Physical <div> and appending it
 const physicalTitle = document.createElement('h3');
 physicalTitle.innerText = 'Physical';
 physical.appendChild(physicalTitle);
 
-// ***
+// -----
 
 // Creating <h3> for title of Mental <div> and appending it
 const mentalTitle = document.createElement('h3');
 mentalTitle.innerText = 'Mental';
 mental.appendChild(mentalTitle);
 
-// ***
+// -----
 
 // Creating and appending <label> elements for text <input> elements
 const newPhysLabel = document.createElement('label');
@@ -85,7 +85,7 @@ newMentLabel.setAttribute('for', 'new-ment-symptom');
 newMentLabel.innerText = 'New Symptom';
 mental.appendChild(newMentLabel);
 
-// ***
+// -----
 
 // Creating and appending text <input> for adding a new physical symptom to record
 const newPhysSymptom = document.createElement('input');
@@ -96,7 +96,7 @@ newPhysSymptom.setAttribute('minlength', 1);
 newPhysSymptom.placeholder = 'Type here to add symptom';
 physical.appendChild(newPhysSymptom);
 
-// ***
+// -----
 
 // Creating and appending text <input> for adding a new mental symptom to record
 const newMentSymptom = document.createElement('input');
@@ -107,7 +107,7 @@ newMentSymptom.placeholder = 'Type here to add symptom';
 newMentSymptom.id = 'new-ment-symptom';
 mental.appendChild(newMentSymptom);
 
-// ***
+// -----
 
 // Creating and appending a '+ Add' <button> to Physical <div>
 const addPhysBtn = document.createElement('button');
@@ -126,7 +126,7 @@ addPhysBtn.appendChild(physBtnText);
 
 physical.appendChild(addPhysBtn);
 
-// ***
+// -----
 
 // Creating and appending a '+ Add' <button> to Mental <div>
 const addMentBtn = document.createElement('button');
@@ -145,13 +145,13 @@ addMentBtn.appendChild(mentBtnText);
 
 mental.appendChild(addMentBtn);
 
-// ***
+// -----
 
 // Appending Physical and Mental <div>s to <form>
 form.appendChild(physical);
 form.appendChild(mental);
 
-// ***
+// -----
 
 // Creating and appending submit <button> to <form>
 const submitBtn = document.createElement('button');
@@ -187,7 +187,7 @@ newPhysSymptom.addEventListener('input', (event) => {
   }
 });
 
-// ***
+// -----
 
 // Enable new mental symptom button
 newMentSymptom.addEventListener('input', (event) => {
@@ -220,7 +220,7 @@ addPhysBtn.addEventListener('click', () => {
   symptoms.push(newSymptom);
 });
 
-// ***
+// -----
 
 // Event listener on new mental symptom <button>
 addMentBtn.addEventListener('click', () => {

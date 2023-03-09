@@ -174,6 +174,12 @@ createRecordBtn.addEventListener('click', () => {
   section.appendChild(form);
 });
 
+// -------------------------------------------------------------------------------------------
+
+// *---- Creating function to render record object after new symptom is added and edited ----*
+
+function render() {}
+
 // ------------------------------------------------------------------------------------------
 
 // *---- Creating event listeners to enable '+ Add' buttons when content is in <input> -----*

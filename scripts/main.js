@@ -31,9 +31,7 @@ const record = {
   },
 };
 
-const {
-  user: { entries },
-} = record; // destructuring to get entries for later use
+const { symptoms } = record.user.entries[0]; // destructuring to get entries for later use
 
 // Selecting initial <button> and <p> nodes in <main>
 const createRecordBtn = document.querySelector('#create-record');

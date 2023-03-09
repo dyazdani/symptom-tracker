@@ -182,10 +182,7 @@ newMentSymptom.addEventListener('input', (event) => {
 
 // Event listener on new physical symptom <button>
 addPhysBtn.addEventListener('click', () => {
-  if (form.classList.contains('empty')) {
-    form.classList.remove('empty');
-    submitBtn.disabled = false;
-  }
+  submitBtn.disabled = false;
 
   const newSymptom = {
     name: '',
@@ -193,21 +190,14 @@ addPhysBtn.addEventListener('click', () => {
     type: 'physical',
   };
 
-  symptoms.push(newSymptom);
-  console.log(symptoms);
+  entries.push(newSymptom);
+  console.log(entries);
 });
 
 // Event listener on new mental symptom <button>
-addMentBtn.addEventListener(
-  'click',
-  () => {
-    if (form.classList.contains('empty')) {
-      form.classList.remove('empty');
-      submitBtn.disabled = false;
-    }
-  },
-  { once: true },
-);
+addMentBtn.addEventListener('click', () => {
+  submitBtn.disabled = false;
+});
 
 // --------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------

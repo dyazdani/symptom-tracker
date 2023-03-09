@@ -31,7 +31,9 @@ const record = {
   },
 };
 
-const { entries, timestamp, symptoms } = record; // destructuring object for later use
+const {
+  user: { entries },
+} = record; // destructuring to get entries for later use
 
 // Selecting initial <button> and <p> nodes in <main>
 const createRecordBtn = document.querySelector('#create-record');

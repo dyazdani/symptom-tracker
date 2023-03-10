@@ -275,8 +275,8 @@ function renderMentSymptom() {
 
 // *------ Creating function to render record after severity is selected ------*
 
-function renderSeverity() {
-  // *--- Rendering Physical Symptom Severity Ratings ---*
+// *-------- Rendering Physical Symptom Severity Ratings --------*
+function renderPhysSeverity() {
   const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical[checked]');
   const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
 
@@ -300,8 +300,10 @@ function renderSeverity() {
     selectedSeverity.setAttribute('aria-checked', 'true');
     selectedSeverity.setAttribute('data-value', 'True');
   }
+}
 
-  // *--- Rendering Mental Symptom Severity Ratings ---*
+// *-------- Rendering Mental Symptom Severity Ratings --------*
+function renderMentSeverity() {
   const [...checkedMentalSeverities] = document.querySelectorAll('#mental[checked]');
   const [...mentalRadiogroups] = document.querySelectorAll('.mental-radiogroup');
 

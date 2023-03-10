@@ -190,6 +190,21 @@ createRecordBtn.addEventListener('click', () => {
 
 // -----------------------------------------------------------------------------
 
+// *------ Creating function to render record after symptom is added ------*
+
+function renderSymptom() {
+  // *--- Rendering Physical Symptom ---*
+  const lastPhysSymptom = physSymptoms[physSymptoms.length - 1].name;
+  // Creating radiogroup <div>
+  const physicalRadiogroup = document.createElement('div');
+  physicalRadiogroup.classList.add('physical-radiogroup');
+  physicalRadiogroup.setAttribute('role', 'radiogroup');
+  physicalRadiogroup.setAttribute('aria-labelledby', `legend-${lastPhysSymptom}`);
+  physicalRadiogroup.id = lastPhysSymptom;
+}
+
+// -----------------------------------------------------------------------------
+
 // *------ Creating function to render record after severity is selected ------*
 
 function renderSeverity() {

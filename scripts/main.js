@@ -198,7 +198,7 @@ function renderSeverity() {
   const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
 
   // Iterate through each physical symptom in record
-  for (let i = 0; i < physSymptoms.length; i++) {
+  for (let i = 0; i < physSymptoms.length; i += 1) {
     // Uncheck checked button element in radiogroups if it doesn't match record anymore
     if (!checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)) {
       checkedPhysicalSeverities[i].checked = false;
@@ -208,7 +208,9 @@ function renderSeverity() {
 
     // Find button element corresponding with new severity selection
     const [...allRadiogroupBtns] = physicalRadiogroups[i].children;
-    const selectedSeverity = allRadiogroupBtns.filter((element) => element.classList.contains(physSymptoms[i].severity));
+    const selectedSeverity = allRadiogroupBtns.filter((element) => {
+      element.classList.contains(physSymptoms[i].severity);
+    });
 
     // Check new severity selection
     selectedSeverity.checked = true;

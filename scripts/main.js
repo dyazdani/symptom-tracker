@@ -1,7 +1,7 @@
 // const data = await fetch('./data/sample-data.json').then((response) => response.json());
 
 // Exceptions for Code Spell Checker extension in VS Code
-// cspell: ignore ment
+// cspell: ignore ment radiogroup radiogroups btn btns
 
 // -------------------------------------------------------------------------------
 

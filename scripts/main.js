@@ -196,6 +196,7 @@ function renderSymptom() {
   // Creating and adding <p> for legend
   const physLegend = document.createElement('p');
   physLegend.id = `legend-${lastPhysSymptom}`;
+  physLegend.innerText = lastPhysSymptom;
   physicalRadiogroup.appendChild(physLegend);
 
   // Creating and adding severity buttons
@@ -204,13 +205,12 @@ function renderSymptom() {
 
     const button = document.createElement('button');
     button.className = `severity ${severities[i]}`;
-    button
-      .setAttribute('type', 'button')
-      .setAttribute('role', 'radio')
-      .setAttribute('aria-checked', 'false')
-      .setAttribute('tabindex', '0')
-      .setAttribute('aria-labelledby', `${severities[i]}Label`)
-      .setAttribute('data-value', 'False');
+    button.setAttribute('type', 'button');
+    button.setAttribute('role', 'radio');
+    button.setAttribute('aria-checked', 'false');
+    button.setAttribute('tabindex', '0');
+    button.setAttribute('aria-labelledby', `${severities[i]}Label`);
+    button.setAttribute('data-value', 'False');
 
     const buttonLabel = document.createElement('label');
     buttonLabel.innerText = severities[i];

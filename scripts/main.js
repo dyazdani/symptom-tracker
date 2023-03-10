@@ -25,20 +25,8 @@ const record = {
     entries: [
       {
         timestamp: date,
-        'physical-symptoms': [
-          {
-            name: 'Fatigue',
-            severity: 'moderate',
-            type: 'physical',
-          },
-        ],
-        'mental-symptoms': [
-          {
-            name: 'Anxiety',
-            severity: 'none',
-            type: 'mental',
-          },
-        ],
+        'physical-symptoms': [],
+        'mental-symptoms': [],
       },
     ],
   },
@@ -232,6 +220,9 @@ function renderSymptom() {
     buttonSpan.appendChild(button);
     physicalRadiogroup.appendChild(buttonSpan);
   }
+
+  // Appending radiogroup to physical <div>
+  physical.insertBefore(physicalRadiogroup, newPhysLabel);
 }
 
 // -----------------------------------------------------------------------------

@@ -178,12 +178,13 @@ createRecordBtn.addEventListener('click', () => {
 
 // -----------------------------------------------------------------------------
 
-// *------ Creating function to render record after symptom is added ------*
+// *------ Creating functions to render record after symptom is added ------*
 
 const severities = ['none', 'mild', 'moderate', 'severe'];
 
-function renderSymptom() {
-  // *--- Rendering Physical Symptom ---*
+// *-------- Rendering Physical Symptom --------*
+
+function renderPhysSymptom() {
   const lastPhysSymptom = physSymptoms[physSymptoms.length - 1].name;
 
   // Creating radiogroup <div>
@@ -223,6 +224,51 @@ function renderSymptom() {
 
   // Appending radiogroup to physical <div>
   physical.insertBefore(physicalRadiogroup, newPhysLabel);
+}
+
+// *-------- Rendering Mental Symptom --------*
+
+function renderMentSymptom() {
+  // *-------- Rendering Mental Symptom --------*
+  const lastMentSymptom = mentSymptoms[mentSymptoms.length - 1].name;
+
+  // Creating radiogroup <div>
+  const mentalRadiogroup = document.createElement('div');
+  mentalRadiogroup.classList.add('mental-radiogroup');
+  mentalRadiogroup.setAttribute('role', 'radiogroup');
+  mentalRadiogroup.setAttribute('aria-labelledby', `legend-${lastMentSymptom}`);
+  mentalRadiogroup.id = lastMentSymptom;
+
+  // Creating and adding <p> for legend
+  const mentLegend = document.createElement('p');
+  mentLegend.id = `legend-${lastMentSymptom}`;
+  mentLegend.innerText = lastMentSymptom;
+  mentalRadiogroup.appendChild(mentLegend);
+
+  // Creating and adding severity buttons
+  for (let i = 0; i < severities.length; i += 1) {
+    const buttonSpan = document.createElement('span');
+
+    const button = document.createElement('button');
+    button.className = `severity ${severities[i]}`;
+    button.setAttribute('type', 'button');
+    button.setAttribute('role', 'radio');
+    button.setAttribute('aria-checked', 'false');
+    button.setAttribute('tabindex', '0');
+    button.setAttribute('aria-labelledby', `${severities[i]}Label`);
+    button.setAttribute('data-value', 'False');
+
+    const buttonLabel = document.createElement('label');
+    buttonLabel.innerText = severities[i];
+    buttonLabel.id = `${severities[i]}Label`;
+
+    button.appendChild(buttonLabel);
+    buttonSpan.appendChild(button);
+    mentalRadiogroup.appendChild(buttonSpan);
+  }
+
+  // Appending radiogroup to mental <div>
+  mental.insertBefore(mentalRadiogroup, newMentLabel);
 }
 
 // -----------------------------------------------------------------------------
@@ -326,7 +372,7 @@ addPhysBtn.addEventListener('click', () => {
 
   physSymptoms.push(newSymptom);
 
-  renderSymptom();
+  renderPhysSymptom();
 });
 
 // -----
@@ -336,17 +382,19 @@ addMentBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
 
-  // Create and add blank physical symptom
+  // Create and add blank mental symptom
   const newSymptom = {
     name: newMentInput.value,
     severity: undefined,
-    type: 'physical',
+    type: 'mental',
   };
 
   newMentInput.value = '';
   addMentBtn.disabled = true;
 
   mentSymptoms.push(newSymptom);
+
+  renderMentSymptom();
 });
 
 // --------------------------------------------------------------------------------------

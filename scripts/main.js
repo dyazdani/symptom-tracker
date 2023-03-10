@@ -195,12 +195,18 @@ createRecordBtn.addEventListener('click', () => {
 function renderSymptom() {
   // *--- Rendering Physical Symptom ---*
   const lastPhysSymptom = physSymptoms[physSymptoms.length - 1].name;
+
   // Creating radiogroup <div>
   const physicalRadiogroup = document.createElement('div');
   physicalRadiogroup.classList.add('physical-radiogroup');
   physicalRadiogroup.setAttribute('role', 'radiogroup');
   physicalRadiogroup.setAttribute('aria-labelledby', `legend-${lastPhysSymptom}`);
   physicalRadiogroup.id = lastPhysSymptom;
+
+  // Creating and adding <p> for legend
+  const physLegend = document.createElement('p');
+  physLegend.id = `legend-${lastPhysSymptom}`;
+  physicalRadiogroup.appendChild(physLegend);
 }
 
 // -----------------------------------------------------------------------------

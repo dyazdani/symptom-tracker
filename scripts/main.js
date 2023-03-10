@@ -25,13 +25,27 @@ const record = {
     entries: [
       {
         timestamp: date,
-        symptoms: [],
+        'physical-symptoms': [
+          {
+            name: 'Fatigue',
+            severity: 'moderate',
+            type: 'physical',
+          },
+        ],
+        'mental-symptoms': [
+          {
+            name: 'Anxiety',
+            severity: 'none',
+            type: 'mental',
+          },
+        ],
       },
     ],
   },
 };
 
-const { symptoms } = record.user.entries[0]; // destructuring to get entries for later use
+// destructuring to get physical and mental symptom entries for later use
+const { 'physical-symptoms': physSymptoms, 'mental-symptoms': mentSymptoms } = record.user.entries[0];
 
 // Selecting initial <button> and <p> nodes in <main>
 const createRecordBtn = document.querySelector('#create-record');
@@ -174,11 +188,34 @@ createRecordBtn.addEventListener('click', () => {
   section.appendChild(form);
 });
 
-// -------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------
 
-// *---- Creating function to render record object after new symptom is added and edited ----*
+// *------ Creating function to render record object after symptom severity is selected ------*
 
-function render() {}
+function renderSeverity() {
+  // *--- Rendering Physical Symptom Severity Ratings ---*
+  const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical[checked]');
+  const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
+
+  // Iterate through each physical symptom in record
+  for (let i = 0; i < physSymptoms.length; i++) {
+    // Uncheck checked button element in radiogroups if it doesn't match record anymore
+    if (!checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)) {
+      checkedPhysicalSeverities[i].checked = false;
+      checkedPhysicalSeverities[i].setAttribute('aria-checked', 'false');
+      checkedPhysicalSeverities[i].setAttribute('data-value', 'False');
+    }
+
+    // Find button element corresponding with new severity selection
+    const [...allRadiogroupBtns] = physicalRadiogroups[i].children;
+    const selectedSeverity = allRadiogroupBtns.filter((element) => element.classList.contains(physSymptoms[i].severity));
+
+    // Check new severity selection
+    selectedSeverity.checked = true;
+    selectedSeverity.setAttribute('aria-checked', 'true');
+    selectedSeverity.setAttribute('data-value', 'True');
+  }
+}
 
 // ------------------------------------------------------------------------------------------
 
@@ -223,7 +260,7 @@ addPhysBtn.addEventListener('click', () => {
   newPhysSymptom.value = '';
   addPhysBtn.disabled = true;
 
-  symptoms.push(newSymptom);
+  physSymptoms.push(newSymptom);
 });
 
 // -----
@@ -243,7 +280,7 @@ addMentBtn.addEventListener('click', () => {
   newMentSymptom.value = '';
   addMentBtn.disabled = true;
 
-  symptoms.push(newSymptom);
+  mentSymptoms.push(newSymptom);
 });
 
 // --------------------------------------------------------------------------------------
@@ -291,14 +328,6 @@ addMentBtn.addEventListener('click', () => {
 //     // Creating <fieldset>
 //     const fieldset = document.createElement('fieldset');
 //     fieldset.id = element.name;
-
-//     // Creating and adding <legend>
-//     const legend = document.createElement('legend');
-//     // const legendText = document.createElement('span');
-//     // legendText.innerText = element.name;
-//     // legend.appendChild(legendText);
-//     legend.innerText = element.name;
-//     fieldset.appendChild(legend);
 
 //     // Creating and adding <div> for severity buttons
 //     const buttonsDiv = document.createElement('div');

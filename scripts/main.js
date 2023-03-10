@@ -325,6 +325,8 @@ addPhysBtn.addEventListener('click', () => {
   addPhysBtn.disabled = true;
 
   physSymptoms.push(newSymptom);
+
+  renderSymptom();
 });
 
 // -----

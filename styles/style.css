@@ -88,3 +88,9 @@ button#mental {
   align-self: center;
   margin-top: 1rem;
 }
+
+/* TO DO: Make label of radio buttons take up 
+full space of their parent button element */
+
+label {
+}

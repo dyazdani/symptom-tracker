@@ -178,6 +178,74 @@ createRecordBtn.addEventListener('click', () => {
 
 // -----------------------------------------------------------------------------
 
+// *------ Creating functions to render record after severity is selected ------*
+
+// *-------- Rendering Physical Symptom Severity Ratings --------*
+function renderPhysSeverity() {
+  const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical [checked]');
+  const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
+
+  // Iterate through each physical symptom in record
+  for (let i = 0; i < physSymptoms.length; i += 1) {
+    // Uncheck checked button element in radiogroups if it doesn't match record anymore
+    if (
+      checkedPhysicalSeverities.length > 0
+      && !checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)
+    ) {
+      checkedPhysicalSeverities[i].checked = false;
+      checkedPhysicalSeverities[i].setAttribute('aria-checked', 'false');
+      checkedPhysicalSeverities[i].setAttribute('data-value', 'False');
+    }
+
+    // Find button element corresponding with new severity selection
+    const [...allRadiogroupBtns] = document.querySelectorAll('#physical .severity');
+    const selectedSeverity = allRadiogroupBtns.filter((element) => {
+      element.classList.contains(physSymptoms[i].severity);
+    });
+
+    // Check new severity selection
+    selectedSeverity.checked = true;
+    selectedSeverity.setAttribute('aria-checked', 'true');
+    selectedSeverity.setAttribute('data-value', 'True');
+  }
+}
+
+// *-------- Rendering Mental Symptom Severity Ratings --------*
+function renderMentSeverity() {
+  const [...checkedMentalSeverities] = document.querySelectorAll('#mental [checked]');
+
+  // Iterate through each mental symptom in record
+  for (let i = 0; i < mentSymptoms.length; i += 1) {
+    // Uncheck checked button element in radiogroups if it doesn't match record anymore
+    if (
+      checkedMentalSeverities.length > 0
+      && !checkedMentalSeverities[i].classList.contains(mentSymptoms[i].severity)
+    ) {
+      checkedMentalSeverities[i].removeAttribute('checked');
+      checkedMentalSeverities[i].setAttribute('aria-checked', 'false');
+      checkedMentalSeverities[i].setAttribute('data-value', 'False');
+    }
+
+    // Find button element corresponding with new severity selection
+    const [...allRadiogroupBtns] = document.querySelectorAll('#mental .severity');
+
+    console.log(allRadiogroupBtns);
+    console.log(mentSymptoms[i].severity);
+    const selectedSeverity = mentSymptoms[i].severity;
+    console.log(allRadiogroupBtns[i].classList.contains(selectedSeverity));
+
+    const selectedSeverityBtnIndex = allRadiogroupBtns.findIndex((element) => element.classList.contains(selectedSeverity));
+    console.log(selectedSeverityBtnIndex);
+
+    // Check new severity selection
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('checked', '');
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('aria-checked', 'true');
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('data-value', 'True');
+  }
+}
+
+// ------------------------------------------------------------------------------------------
+
 // *------ Creating functions to render record after symptom is added ------*
 
 const severities = ['none', 'mild', 'moderate', 'severe'];
@@ -224,12 +292,26 @@ function renderPhysSymptom() {
 
   // Appending radiogroup to physical <div>
   physical.insertBefore(physicalRadiogroup, newPhysLabel);
+
+  //-----
+
+  // Event listener on radiogroup <div> for changing severity rating
+  physicalRadiogroup.addEventListener('click', (event) => {
+    if (event.target.parentNode.classList.contains('severity')) {
+      physSymptoms.forEach((entry) => {
+        if (entry.name === event.currentTarget.id) {
+          entry.severity = event.target.innerHTML;
+        }
+      });
+    }
+
+    renderPhysSeverity();
+  });
 }
 
 // *-------- Rendering Mental Symptom --------*
 
 function renderMentSymptom() {
-  // *-------- Rendering Mental Symptom --------*
   const lastMentSymptom = mentSymptoms[mentSymptoms.length - 1].name;
 
   // Creating radiogroup <div>
@@ -269,67 +351,24 @@ function renderMentSymptom() {
 
   // Appending radiogroup to mental <div>
   mental.insertBefore(mentalRadiogroup, newMentLabel);
+
+  //-----
+
+  // Event listener on radiogroup <div> for changing severity rating
+  mentalRadiogroup.addEventListener('click', (event) => {
+    if (event.target.parentNode.classList.contains('severity')) {
+      mentSymptoms.forEach((entry) => {
+        if (entry.name === event.currentTarget.id) {
+          entry.severity = event.target.innerHTML;
+        }
+      });
+    }
+
+    renderMentSeverity();
+  });
 }
 
 // -----------------------------------------------------------------------------
-
-// *------ Creating function to render record after severity is selected ------*
-
-// *-------- Rendering Physical Symptom Severity Ratings --------*
-function renderPhysSeverity() {
-  const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical[checked]');
-  const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
-
-  // Iterate through each physical symptom in record
-  for (let i = 0; i < physSymptoms.length; i += 1) {
-    // Uncheck checked button element in radiogroups if it doesn't match record anymore
-    if (!checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)) {
-      checkedPhysicalSeverities[i].checked = false;
-      checkedPhysicalSeverities[i].setAttribute('aria-checked', 'false');
-      checkedPhysicalSeverities[i].setAttribute('data-value', 'False');
-    }
-
-    // Find button element corresponding with new severity selection
-    const [...allRadiogroupBtns] = physicalRadiogroups[i].children;
-    const selectedSeverity = allRadiogroupBtns.filter((element) => {
-      element.classList.contains(physSymptoms[i].severity);
-    });
-
-    // Check new severity selection
-    selectedSeverity.checked = true;
-    selectedSeverity.setAttribute('aria-checked', 'true');
-    selectedSeverity.setAttribute('data-value', 'True');
-  }
-}
-
-// *-------- Rendering Mental Symptom Severity Ratings --------*
-function renderMentSeverity() {
-  const [...checkedMentalSeverities] = document.querySelectorAll('#mental[checked]');
-  const [...mentalRadiogroups] = document.querySelectorAll('.mental-radiogroup');
-
-  // Iterate through each mental symptom in record
-  for (let i = 0; i < mentSymptoms.length; i += 1) {
-    // Uncheck checked button element in radiogroups if it doesn't match record anymore
-    if (!checkedMentalSeverities[i].classList.contains(mentSymptoms[i].severity)) {
-      checkedMentalSeverities[i].checked = false;
-      checkedMentalSeverities[i].setAttribute('aria-checked', 'false');
-      checkedMentalSeverities[i].setAttribute('data-value', 'False');
-    }
-
-    // Find button element corresponding with new severity selection
-    const [...allRadiogroupBtns] = mentalRadiogroups[i].children;
-    const selectedSeverity = allRadiogroupBtns.filter((element) => {
-      element.classList.contains(mentSymptoms[i].severity);
-    });
-
-    // Check new severity selection
-    selectedSeverity.checked = true;
-    selectedSeverity.setAttribute('aria-checked', 'true');
-    selectedSeverity.setAttribute('data-value', 'True');
-  }
-}
-
-// ------------------------------------------------------------------------------------------
 
 // *---- Creating event listeners to enable '+ Add' buttons when content is in <input> -----*
 
@@ -357,7 +396,7 @@ newMentInput.addEventListener('input', (event) => {
 
 // *--- Creating event listeners to enable submit button when symptoms are added to record ----*
 
-// Event listener on new physical symptom <button>
+// *------ Event listener on new physical symptom <button> ------*
 addPhysBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
@@ -379,7 +418,7 @@ addPhysBtn.addEventListener('click', () => {
 
 // -----
 
-// Event listener on new mental symptom <button>
+// *------ Event listener on new mental symptom <button> ------*
 addMentBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
@@ -398,7 +437,6 @@ addMentBtn.addEventListener('click', () => {
 
   renderMentSymptom();
 });
-
 // --------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------

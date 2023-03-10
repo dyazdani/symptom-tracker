@@ -192,6 +192,8 @@ createRecordBtn.addEventListener('click', () => {
 
 // *------ Creating function to render record after symptom is added ------*
 
+const severities = ['none', 'mild', 'moderate', 'severe'];
+
 function renderSymptom() {
   // *--- Rendering Physical Symptom ---*
   const lastPhysSymptom = physSymptoms[physSymptoms.length - 1].name;
@@ -207,6 +209,29 @@ function renderSymptom() {
   const physLegend = document.createElement('p');
   physLegend.id = `legend-${lastPhysSymptom}`;
   physicalRadiogroup.appendChild(physLegend);
+
+  // Creating and adding severity buttons
+  for (let i = 0; i < severities.length; i += 1) {
+    const buttonSpan = document.createElement('span');
+
+    const button = document.createElement('button');
+    button.className = `severity ${severities[i]}`;
+    button
+      .setAttribute('type', 'button')
+      .setAttribute('role', 'radio')
+      .setAttribute('aria-checked', 'false')
+      .setAttribute('tabindex', '0')
+      .setAttribute('aria-labelledby', `${severities[i]}Label`)
+      .setAttribute('data-value', 'False');
+
+    const buttonLabel = document.createElement('label');
+    buttonLabel.innerText = severities[i];
+    buttonLabel.id = `${severities[i]}Label`;
+
+    button.appendChild(buttonLabel);
+    buttonSpan.appendChild(button);
+    physicalRadiogroup.appendChild(buttonSpan);
+  }
 }
 
 // -----------------------------------------------------------------------------

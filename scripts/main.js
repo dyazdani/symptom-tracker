@@ -183,7 +183,6 @@ createRecordBtn.addEventListener('click', () => {
 // *-------- Rendering Physical Symptom Severity Ratings --------*
 function renderPhysSeverity() {
   const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical [checked]');
-  const [...physicalRadiogroups] = document.querySelectorAll('.physical-radiogroup');
 
   // Iterate through each physical symptom in record
   for (let i = 0; i < physSymptoms.length; i += 1) {
@@ -192,21 +191,20 @@ function renderPhysSeverity() {
       checkedPhysicalSeverities.length > 0
       && !checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)
     ) {
-      checkedPhysicalSeverities[i].checked = false;
+      checkedPhysicalSeverities[i].removeAttribute('checked');
       checkedPhysicalSeverities[i].setAttribute('aria-checked', 'false');
       checkedPhysicalSeverities[i].setAttribute('data-value', 'False');
     }
 
     // Find button element corresponding with new severity selection
     const [...allRadiogroupBtns] = document.querySelectorAll('#physical .severity');
-    const selectedSeverity = allRadiogroupBtns.filter((element) => {
-      element.classList.contains(physSymptoms[i].severity);
-    });
+    const selectedSeverity = physSymptoms[i].severity;
+    const selectedSeverityBtnIndex = allRadiogroupBtns.findIndex((element) => element.classList.contains(selectedSeverity));
 
     // Check new severity selection
-    selectedSeverity.checked = true;
-    selectedSeverity.setAttribute('aria-checked', 'true');
-    selectedSeverity.setAttribute('data-value', 'True');
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('checked', '');
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('aria-checked', 'true');
+    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('data-value', 'True');
   }
 }
 
@@ -228,14 +226,8 @@ function renderMentSeverity() {
 
     // Find button element corresponding with new severity selection
     const [...allRadiogroupBtns] = document.querySelectorAll('#mental .severity');
-
-    console.log(allRadiogroupBtns);
-    console.log(mentSymptoms[i].severity);
     const selectedSeverity = mentSymptoms[i].severity;
-    console.log(allRadiogroupBtns[i].classList.contains(selectedSeverity));
-
     const selectedSeverityBtnIndex = allRadiogroupBtns.findIndex((element) => element.classList.contains(selectedSeverity));
-    console.log(selectedSeverityBtnIndex);
 
     // Check new severity selection
     allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('checked', '');

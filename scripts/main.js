@@ -102,24 +102,24 @@ mental.appendChild(newMentLabel);
 // -----
 
 // Creating and appending text <input> for adding a new physical symptom to record
-const physNameInput = document.createElement('input');
-physNameInput.setAttribute('type', 'text');
-physNameInput.setAttribute('name', 'new-phys-symptom-name');
-physNameInput.id = 'new-phys-symptom';
-physNameInput.setAttribute('minlength', 1);
-physNameInput.placeholder = 'Type here to add symptom';
-physical.appendChild(physNameInput);
+const newPhysInput = document.createElement('input');
+newPhysInput.setAttribute('type', 'text');
+newPhysInput.setAttribute('name', 'new-phys-input-name');
+newPhysInput.id = 'new-phys-input';
+newPhysInput.setAttribute('minlength', 1);
+newPhysInput.placeholder = 'Type here to add symptom';
+physical.appendChild(newPhysInput);
 
 // -----
 
 // Creating and appending text <input> for adding a new mental symptom to record
-const mentNameInput = document.createElement('input');
-mentNameInput.setAttribute('type', 'text');
-mentNameInput.setAttribute('name', 'new-ment-symptom-name');
-mentNameInput.setAttribute('minlength', 1);
-mentNameInput.placeholder = 'Type here to add symptom';
-mentNameInput.id = 'new-ment-symptom';
-mental.appendChild(mentNameInput);
+const newMentInput = document.createElement('input');
+newMentInput.setAttribute('type', 'text');
+newMentInput.setAttribute('name', 'new-ment-input-name');
+newMentInput.setAttribute('minlength', 1);
+newMentInput.placeholder = 'Type here to add symptom';
+newMentInput.id = 'new-ment-input';
+mental.appendChild(newMentInput);
 
 // -----
 
@@ -224,7 +224,7 @@ function renderSeverity() {
 // *---- Creating event listeners to enable '+ Add' buttons when content is in <input> -----*
 
 // Enable new physical symptom button
-physNameInput.addEventListener('input', (event) => {
+newPhysInput.addEventListener('input', (event) => {
   if (event.target.value === '') {
     addPhysBtn.disabled = true;
   } else {
@@ -235,7 +235,7 @@ physNameInput.addEventListener('input', (event) => {
 // -----
 
 // Enable new mental symptom button
-mentNameInput.addEventListener('input', (event) => {
+newMentInput.addEventListener('input', (event) => {
   if (event.target.value === '') {
     addMentBtn.disabled = true;
   } else {
@@ -254,12 +254,12 @@ addPhysBtn.addEventListener('click', () => {
 
   // Create and add new physical symptom
   const newSymptom = {
-    name: physNameInput.value,
+    name: newPhysInput.value,
     severity: undefined,
     type: 'physical',
   };
 
-  physNameInput.value = '';
+  newPhysInput.value = '';
   addPhysBtn.disabled = true;
 
   physSymptoms.push(newSymptom);
@@ -274,12 +274,12 @@ addMentBtn.addEventListener('click', () => {
 
   // Create and add blank physical symptom
   const newSymptom = {
-    name: mentNameInput.value,
+    name: newMentInput.value,
     severity: undefined,
     type: 'physical',
   };
 
-  mentNameInput.value = '';
+  newMentInput.value = '';
   addMentBtn.disabled = true;
 
   mentSymptoms.push(newSymptom);

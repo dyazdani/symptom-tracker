@@ -188,9 +188,9 @@ createRecordBtn.addEventListener('click', () => {
   section.appendChild(form);
 });
 
-// --------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
-// *------ Creating function to render record object after symptom severity is selected ------*
+// *------ Creating function to render record after severity is selected ------*
 
 function renderSeverity() {
   // *--- Rendering Physical Symptom Severity Ratings ---*
@@ -210,6 +210,31 @@ function renderSeverity() {
     const [...allRadiogroupBtns] = physicalRadiogroups[i].children;
     const selectedSeverity = allRadiogroupBtns.filter((element) => {
       element.classList.contains(physSymptoms[i].severity);
+    });
+
+    // Check new severity selection
+    selectedSeverity.checked = true;
+    selectedSeverity.setAttribute('aria-checked', 'true');
+    selectedSeverity.setAttribute('data-value', 'True');
+  }
+
+  // *--- Rendering Mental Symptom Severity Ratings ---*
+  const [...checkedMentalSeverities] = document.querySelectorAll('#mental[checked]');
+  const [...mentalRadiogroups] = document.querySelectorAll('.mental-radiogroup');
+
+  // Iterate through each mental symptom in record
+  for (let i = 0; i < mentSymptoms.length; i += 1) {
+    // Uncheck checked button element in radiogroups if it doesn't match record anymore
+    if (!checkedMentalSeverities[i].classList.contains(mentSymptoms[i].severity)) {
+      checkedMentalSeverities[i].checked = false;
+      checkedMentalSeverities[i].setAttribute('aria-checked', 'false');
+      checkedMentalSeverities[i].setAttribute('data-value', 'False');
+    }
+
+    // Find button element corresponding with new severity selection
+    const [...allRadiogroupBtns] = mentalRadiogroups[i].children;
+    const selectedSeverity = allRadiogroupBtns.filter((element) => {
+      element.classList.contains(mentSymptoms[i].severity);
     });
 
     // Check new severity selection

@@ -460,4 +460,19 @@ addMentBtn.addEventListener('click', () => {
 
 // -----
 
-// *------ Event listener on submit <button> for success screen------*
+// *----------------- Creating success screen -----------------------*
+const successScreen = document.createElement('div');
+successScreen.classList.add('hidden');
+successScreen.id = 'success-screen';
+
+const closeBtn = document.createElement('button');
+closeBtn.setAttribute('type', 'button');
+closeBtn.id = 'close-button';
+const closeImage = document.createElement('img');
+closeImage.setAttribute('src', './images/cancel.png');
+closeImage.setAttribute('alt', 'close button');
+closeBtn.appendChild(closeImage);
+
+successScreen.appendChild(closeBtn);
+successScreen.innerHTML += '<br> You submitted your daily report!<br> &#127881;';
+document.documentElement.appendChild(successScreen);

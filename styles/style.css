@@ -97,9 +97,10 @@ label {
 #success-screen {
   border: black solid 1px;
   border-radius: 5px;
+  background-color: white;
   padding: 5px;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   width: 30%;
   height: 10rem;
   position: fixed;
@@ -119,5 +120,15 @@ img {
 }
 
 .hidden {
+  display: none;
+}
+
+#gray-out {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(92, 92, 92, 0.592);
+  position: fixed;
+  top: 0px;
   display: none;
 }

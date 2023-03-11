@@ -407,48 +407,61 @@ newMentInput.addEventListener('input', (event) => {
 // *--- Creating event listeners to enable submit button when symptoms are added to record ----*
 
 // *------ Event listener on new physical symptom <button> ------*
-// TO DO: Don't allow symptoms with the same name
 addPhysBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
 
   // Create and add new physical symptom
-  const newSymptom = {
-    name: newPhysInput.value,
-    severity: undefined,
-    type: 'physical',
-  };
+  // Only create new symptom if the name is not already in record
+  // TO DO: Throw error if input is repeat of symptom already in record
+  if (!physSymptoms.some((element) => element.name === newPhysInput.value)) {
+    const newSymptom = {
+      name: newPhysInput.value,
+      severity: undefined,
+      type: 'physical',
+    };
 
-  newPhysInput.value = '';
-  addPhysBtn.disabled = true;
+    // reset text input element and disable '+ Add' button
+    newPhysInput.value = '';
+    addPhysBtn.disabled = true;
 
-  physSymptoms.push(newSymptom);
+    physSymptoms.push(newSymptom);
 
-  renderPhysSymptom();
+    renderPhysSymptom();
+  }
 });
 
 // -----
 
 // *------ Event listener on new mental symptom <button> ------*
-// TO DO: Don't allow symptoms with the same name
 addMentBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
 
   // Create and add blank mental symptom
-  const newSymptom = {
-    name: newMentInput.value,
-    severity: undefined,
-    type: 'mental',
-  };
+  // Only create new symptom if the name is not already in record
+  // TO DO: Throw error if input is repeat of symptom already in record
+  if (!mentSymptoms.some((element) => element.name === newMentInput.value)) {
+    const newSymptom = {
+      name: newMentInput.value,
+      severity: undefined,
+      type: 'mental',
+    };
 
-  newMentInput.value = '';
-  addMentBtn.disabled = true;
+    // reset text input element and disable '+ Add' button
+    newMentInput.value = '';
+    addMentBtn.disabled = true;
 
-  mentSymptoms.push(newSymptom);
+    mentSymptoms.push(newSymptom);
 
-  renderMentSymptom();
+    renderMentSymptom();
+  }
 });
+
+// -----
+
+// *------ Event listener on submit <button> for success screen------*
+
 // --------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------

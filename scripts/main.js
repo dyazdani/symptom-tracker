@@ -182,29 +182,38 @@ createRecordBtn.addEventListener('click', () => {
 
 // *-------- Rendering Physical Symptom Severity Ratings --------*
 function renderPhysSeverity() {
-  const [...checkedPhysicalSeverities] = document.querySelectorAll('#physical [checked]');
+  // Get array of all physical radiogroup <div>s
+  const [...physRadioDivs] = document.querySelectorAll('.physical-radiogroup');
 
   // Iterate through each physical symptom in record
   for (let i = 0; i < physSymptoms.length; i += 1) {
-    // Uncheck checked button element in radiogroups if it doesn't match record anymore
-    if (
-      checkedPhysicalSeverities.length > 0
-      && !checkedPhysicalSeverities[i].classList.contains(physSymptoms[i].severity)
-    ) {
-      checkedPhysicalSeverities[i].removeAttribute('checked');
-      checkedPhysicalSeverities[i].setAttribute('aria-checked', 'false');
-      checkedPhysicalSeverities[i].setAttribute('data-value', 'False');
+    // Selected  severity in record object
+    const severityFromRecord = physSymptoms[i].severity;
+    const physRadioChildren = [...physRadioDivs[i].children];
+    const checkedSeverityBtnIndex = physRadioChildren.findIndex((element) => element.hasAttribute('checked'));
+
+    // if there is a checked button in current div
+    if (checkedSeverityBtnIndex > -1) {
+      const checkedBtn = physRadioChildren[checkedSeverityBtnIndex];
+
+      // if checked button does not matches record
+      if (!checkedBtn.classList.contains(severityFromRecord)) {
+        // Uncheck checked button element if it doesn't match record anymore
+        checkedBtn.removeAttribute('checked');
+        checkedBtn.setAttribute('aria-checked', 'false');
+        checkedBtn.setAttribute('data-value', 'False');
+      } else {
+        continue;
+      }
     }
 
-    // Find button element corresponding with new severity selection
-    const [...allRadiogroupBtns] = document.querySelectorAll('#physical .severity');
-    const selectedSeverity = physSymptoms[i].severity;
-    const selectedSeverityBtnIndex = allRadiogroupBtns.findIndex((element) => element.classList.contains(selectedSeverity));
+    // Find button element matching severity selection in record object
+    const matchingSeverityBtnIndex = physRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
 
-    // Check new severity selection
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('checked', '');
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('aria-checked', 'true');
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('data-value', 'True');
+    // Check button whose classList had a match to record object severity property
+    physRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
+    physRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
+    physRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
   }
 }
 
@@ -271,8 +280,6 @@ function renderPhysSymptom() {
 
   // Creating and adding severity buttons
   for (let i = 0; i < severities.length; i += 1) {
-    const buttonSpan = document.createElement('span');
-
     const button = document.createElement('button');
     button.className = `severity ${severities[i]}`;
     button.setAttribute('type', 'button');
@@ -287,8 +294,7 @@ function renderPhysSymptom() {
     buttonLabel.id = `${severities[i]}Label`;
 
     button.appendChild(buttonLabel);
-    buttonSpan.appendChild(button);
-    physicalRadiogroup.appendChild(buttonSpan);
+    physicalRadiogroup.appendChild(button);
   }
 
   // Appending radiogroup to physical <div>

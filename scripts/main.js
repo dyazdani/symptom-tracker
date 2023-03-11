@@ -210,29 +210,38 @@ function renderPhysSeverity() {
 
 // *-------- Rendering Mental Symptom Severity Ratings --------*
 function renderMentSeverity() {
-  const [...checkedMentalSeverities] = document.querySelectorAll('#mental [checked]');
+  // Get array of all mental radiogroup <div>s
+  const [...mentRadioDivs] = document.querySelectorAll('.mental-radiogroup');
 
   // Iterate through each mental symptom in record
   for (let i = 0; i < mentSymptoms.length; i += 1) {
-    // Uncheck checked button element in radiogroups if it doesn't match record anymore
-    if (
-      checkedMentalSeverities.length > 0
-      && !checkedMentalSeverities[i].classList.contains(mentSymptoms[i].severity)
-    ) {
-      checkedMentalSeverities[i].removeAttribute('checked');
-      checkedMentalSeverities[i].setAttribute('aria-checked', 'false');
-      checkedMentalSeverities[i].setAttribute('data-value', 'False');
+    // Selected  severity in record object
+    const severityFromRecord = mentSymptoms[i].severity;
+    const mentRadioChildren = [...mentRadioDivs[i].children];
+    const checkedSeverityBtnIndex = mentRadioChildren.findIndex((element) => element.hasAttribute('checked'));
+
+    // if there is a checked button in current div
+    if (checkedSeverityBtnIndex > -1) {
+      const checkedBtn = mentRadioChildren[checkedSeverityBtnIndex];
+
+      // if checked button does not matches record
+      if (!checkedBtn.classList.contains(severityFromRecord)) {
+        // Uncheck checked button element if it doesn't match record anymore
+        checkedBtn.removeAttribute('checked');
+        checkedBtn.setAttribute('aria-checked', 'false');
+        checkedBtn.setAttribute('data-value', 'False');
+      } else {
+        continue;
+      }
     }
 
-    // Find button element corresponding with new severity selection
-    const [...allRadiogroupBtns] = document.querySelectorAll('#mental .severity');
-    const selectedSeverity = mentSymptoms[i].severity;
-    const selectedSeverityBtnIndex = allRadiogroupBtns.findIndex((element) => element.classList.contains(selectedSeverity));
+    // Find button element matching severity selection in record object
+    const matchingSeverityBtnIndex = mentRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
 
-    // Check new severity selection
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('checked', '');
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('aria-checked', 'true');
-    allRadiogroupBtns[selectedSeverityBtnIndex].setAttribute('data-value', 'True');
+    // Check button whose classList had a match to record object severity property
+    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
+    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
+    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
   }
 }
 
@@ -321,7 +330,7 @@ function renderMentSymptom() {
 
   // Creating and adding severity buttons
   for (let i = 0; i < severities.length; i += 1) {
-    const buttonSpan = document.createElement('span');
+    // const buttonSpan = document.createElement('span');
 
     const button = document.createElement('button');
     button.className = `severity ${severities[i]}`;
@@ -337,8 +346,8 @@ function renderMentSymptom() {
     buttonLabel.id = `${severities[i]}Label`;
 
     button.appendChild(buttonLabel);
-    buttonSpan.appendChild(button);
-    mentalRadiogroup.appendChild(buttonSpan);
+    // buttonSpan.appendChild(button);
+    mentalRadiogroup.appendChild(button);
   }
 
   // Appending radiogroup to mental <div>

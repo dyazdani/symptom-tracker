@@ -82,11 +82,9 @@ form {
   padding: 0 1rem;
 }
 
-button#physical,
-button#mental {
-  width: 40%;
-  align-self: center;
-  margin-top: 1rem;
+#physical button,
+#mental button {
+  margin: 0.5rem 0.5rem;
 }
 
 /* TO DO: Make label of radio buttons take up 

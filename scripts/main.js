@@ -207,13 +207,15 @@ function renderPhysSeverity() {
       }
     }
 
-    // Find button element matching severity selection in record object
-    const matchingSeverityBtnIndex = physRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
+    if (severityFromRecord !== undefined) {
+      // Find button element matching severity selection in record object
+      const matchingSeverityBtnIndex = physRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
 
-    // Check button whose classList had a match to record object severity property
-    physRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
-    physRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
-    physRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
+      // Check button whose classList had a match to record object severity property
+      physRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
+      physRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
+      physRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
+    }
   }
 }
 
@@ -244,13 +246,15 @@ function renderMentSeverity() {
       }
     }
 
-    // Find button element matching severity selection in record object
-    const matchingSeverityBtnIndex = mentRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
+    if (severityFromRecord !== undefined) {
+      // Find button element matching severity selection in record object
+      const matchingSeverityBtnIndex = mentRadioChildren.findIndex((element) => element.classList.contains(severityFromRecord));
 
-    // Check button whose classList had a match to record object severity property
-    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
-    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
-    mentRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
+      // Check button whose classList had a match to record object severity property
+      mentRadioChildren[matchingSeverityBtnIndex].setAttribute('checked', '');
+      mentRadioChildren[matchingSeverityBtnIndex].setAttribute('aria-checked', 'true');
+      mentRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
+    }
   }
 }
 
@@ -370,7 +374,6 @@ function renderMentSymptom() {
         }
       });
     }
-
     renderMentSeverity();
   });
 }
@@ -404,6 +407,7 @@ newMentInput.addEventListener('input', (event) => {
 // *--- Creating event listeners to enable submit button when symptoms are added to record ----*
 
 // *------ Event listener on new physical symptom <button> ------*
+// TO DO: Don't allow symptoms with the same name
 addPhysBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;
@@ -426,6 +430,7 @@ addPhysBtn.addEventListener('click', () => {
 // -----
 
 // *------ Event listener on new mental symptom <button> ------*
+// TO DO: Don't allow symptoms with the same name
 addMentBtn.addEventListener('click', () => {
   // Enable submit button
   submitBtn.disabled = false;

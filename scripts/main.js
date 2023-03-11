@@ -479,3 +479,9 @@ closeBtn.appendChild(closeImage);
 successScreen.appendChild(closeBtn);
 successScreen.innerHTML += '<br> You submitted your daily report!<br> &#127881;';
 document.body.appendChild(successScreen);
+
+// *---------- Creating element for graying out the screen -------------*
+
+const grayOut = document.createElement('div');
+grayOut.id = 'gray-out';
+document.documentElement.appendChild(grayOut);

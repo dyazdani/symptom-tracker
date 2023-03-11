@@ -7,6 +7,9 @@
 
 // *--------------- Establishing initial state of the app -----------------------*
 
+// select <section> node
+const section = document.querySelector('section');
+
 // Creating current date and putting it in an element to append to <h2> in <main>
 const date = new Date().toLocaleDateString('en-us', {
   weekday: 'long',
@@ -172,7 +175,6 @@ createRecordBtn.addEventListener('click', () => {
   noRecordP.remove();
 
   // Append <form> to <section> in order to populate the HTML
-  const section = document.querySelector('section');
   section.appendChild(form);
 });
 
@@ -475,4 +477,4 @@ closeBtn.appendChild(closeImage);
 
 successScreen.appendChild(closeBtn);
 successScreen.innerHTML += '<br> You submitted your daily report!<br> &#127881;';
-document.documentElement.appendChild(successScreen);
+document.body.appendChild(successScreen);

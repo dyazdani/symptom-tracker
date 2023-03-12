@@ -484,4 +484,36 @@ document.body.appendChild(successScreen);
 
 const grayOut = document.createElement('div');
 grayOut.id = 'gray-out';
+grayOut.setAttribute('class', 'hidden');
 document.documentElement.appendChild(grayOut);
+
+// *---------- Event listener for revealing success screen when submit is clicked -------------*
+submitBtn.addEventListener('click', (event) => {
+  // Gray out background elements behind success screen
+  grayOut.removeAttribute('class', 'hidden');
+
+  // disable buttons behind grayOut
+  const [...allBtns] = document.querySelectorAll('button');
+  allBtns.forEach((button) => {
+    button.disabled = true;
+  });
+
+  // Enabling close button for success screen
+  closeBtn.disabled = false;
+
+  // hiding physical <div> elements
+  newPhysInput.classList.add('hidden');
+  addPhysBtn.setAttribute('class', 'hidden');
+  newPhysLabel.setAttribute('class', 'hidden');
+
+  // Hiding mental <div> elements
+  newMentInput.setAttribute('class', 'hidden');
+  addMentBtn.setAttribute('class', 'hidden');
+  newMentLabel.setAttribute('class', 'hidden');
+
+  // Hiding submit button
+  event.currentTarget.setAttribute('class', 'hidden');
+
+  // Reveal success screen
+  successScreen.removeAttribute('class', 'hidden');
+});

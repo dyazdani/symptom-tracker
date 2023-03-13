@@ -103,6 +103,8 @@ form {
 
 #submit-button {
   margin-top: 3rem;
+  width: fit-content;
+  align-self: flex-end;
 }
 
 /* success modal */

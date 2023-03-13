@@ -71,11 +71,6 @@ div#mental {
   flex-flow: column nowrap;
 }
 
-fieldset div button {
-  padding: 0 0.5rem;
-  margin: 0 0.5rem;
-}
-
 span {
   margin: 0.5rem 0.5rem;
 }

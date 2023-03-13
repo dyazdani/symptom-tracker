@@ -571,16 +571,16 @@ const successScreen = document.createElement('div');
 successScreen.classList.add('hidden');
 successScreen.id = 'success-screen';
 
-const btn = document.createElement('button');
-btn.setAttribute('type', 'button');
-btn.id = 'close-button';
+const closeBtn = document.createElement('button');
+closeBtn.setAttribute('type', 'button');
+closeBtn.id = 'close-button';
 const closeImage = document.createElement('img');
 closeImage.setAttribute('src', './images/cancel.png');
 closeImage.setAttribute('alt', 'close button');
-btn.appendChild(closeImage);
+closeBtn.appendChild(closeImage);
 
-successScreen.appendChild(btn);
-successScreen.innerHTML += '<br> You submitted your daily report!<br> &#127881;';
+successScreen.appendChild(closeBtn);
+successScreen.innerText = '🎉';
 document.body.appendChild(successScreen);
 
 // -----
@@ -595,8 +595,6 @@ document.documentElement.appendChild(grayOut);
 // -----
 
 // *---------- Event listener for revealing success screen when submit is clicked -------------*
-const closeBtn = document.getElementById('close-button');
-
 submitBtn.addEventListener('click', (event) => {
   // Update state object
   state.isSubmitted = true;

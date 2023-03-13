@@ -81,7 +81,8 @@ span {
 }
 
 form {
-  padding: 0 1rem;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .severity {
@@ -98,6 +99,9 @@ form {
   padding: 0.1rem 0.9rem;
   border: 1px solid black;
   border-radius: 3px;
+}
+
+#submit-button {
 }
 
 /* success modal */

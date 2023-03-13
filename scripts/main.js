@@ -178,6 +178,7 @@ form.appendChild(mental);
 const submitBtn = document.createElement('button');
 submitBtn.setAttribute('disabled', '');
 submitBtn.setAttribute('type', 'button');
+submitBtn.id = 'submit-button';
 submitBtn.innerText = 'Submit';
 
 form.appendChild(submitBtn);

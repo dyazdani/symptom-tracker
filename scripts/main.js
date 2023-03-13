@@ -180,7 +180,6 @@ form.appendChild(submitBtn);
 createRecordBtn.addEventListener('click', () => {
   // Update state object
   state.isInProgress = true;
-  console.log(`isInProgress is ${state.isInProgress}`);
 
   // Disappear <p> and createRecordBtn <button>
   createRecordBtn.remove();
@@ -234,10 +233,7 @@ function renderPhysSeverity() {
   }
 
   // Update state object if every symptom has severity selected and rendered
-  const isChecked = (element) => {
-    console.log(`element.hasAttribute('checked') is ${element.hasAttribute('checked')}`);
-    return element.hasAttribute('checked');
-  };
+  const isChecked = (element) => element.hasAttribute('checked');
 
   let physSymptomSeverityBtnsRendered = true;
   let mentSymptomSeverityBtnsRendered = true;
@@ -261,16 +257,9 @@ function renderPhysSeverity() {
     }
   }
 
-  console.log(`physSymptomSeverityBtnsRendered is ${physSymptomSeverityBtnsRendered}`);
-  console.log(`mentSymptomSeverityBtnsRendered is ${mentSymptomSeverityBtnsRendered}`);
-
-  console.log(`allSymptomSeverityBtnsRendered is ${allSymptomSeverityBtnsRendered}`);
-
   if (physSymptomSeverityBtnsRendered && mentSymptomSeverityBtnsRendered) {
     state.allSelectedSeveritiesShowing = true;
   }
-
-  console.log(`allSelectedSeveritiesShowing is ${state.allSelectedSeveritiesShowing}`);
 }
 
 // *-------- Rendering Mental Symptom Severity Ratings --------*
@@ -313,10 +302,7 @@ function renderMentSeverity() {
     }
   }
   // Update state object if every symptom has severity selected and rendered
-  const isChecked = (element) => {
-    console.log(`element.hasAttribute('checked') is ${element.hasAttribute('checked')}`);
-    return element.hasAttribute('checked');
-  };
+  const isChecked = (element) => element.hasAttribute('checked');
 
   let physSymptomSeverityBtnsRendered = true;
   let mentSymptomSeverityBtnsRendered = true;
@@ -340,16 +326,9 @@ function renderMentSeverity() {
     }
   }
 
-  console.log(`physSymptomSeverityBtnsRendered is ${physSymptomSeverityBtnsRendered}`);
-  console.log(`mentSymptomSeverityBtnsRendered is ${mentSymptomSeverityBtnsRendered}`);
-
-  console.log(`allSymptomSeverityBtnsRendered is ${allSymptomSeverityBtnsRendered}`);
-
   if (physSymptomSeverityBtnsRendered && mentSymptomSeverityBtnsRendered) {
     state.allSelectedSeveritiesShowing = true;
   }
-
-  console.log(`allSelectedSeveritiesShowing is ${state.allSelectedSeveritiesShowing}`);
 }
 
 // ------------------------------------------------------------------------------------------
@@ -401,11 +380,9 @@ function renderPhysSymptom() {
   // Update state object
   if (state.symptomAdded === false) {
     state.symptomAdded = true;
-    console.log(`symptomAdded is ${state.symptomAdded}`);
   }
 
   state.allSelectedSeveritiesShowing = false;
-  console.log(`allSelectedSevertiesShowing is ${state.allSelectedSeveritiesShowing}`);
 
   //-----
 
@@ -469,11 +446,9 @@ function renderMentSymptom() {
   // Update state object
   if (state.symptomAdded === false) {
     state.symptomAdded = true;
-    console.log(`symptomAdded is ${state.symptomAdded}`);
   }
 
   state.allSelectedSeveritiesShowing = false;
-  console.log(`allSelectedSevertiesShowing is ${state.allSelectedSeveritiesShowing}`);
 
   //-----
 
@@ -606,9 +581,7 @@ const closeBtn = document.getElementById('close-button');
 submitBtn.addEventListener('click', (event) => {
   // Update state object
   state.isSubmitted = true;
-  console.log(`isSubmitted is ${state.isSubmitted}`);
   state.isInProgress = false;
-  console.log(`isInProgress is ${state.isInProgress}`);
 
   // Gray out background elements behind success screen
   grayOut.removeAttribute('class', 'hidden');
@@ -640,7 +613,6 @@ submitBtn.addEventListener('click', (event) => {
 
   // Update state object
   state.isModalShowing = true;
-  console.log(`isModalShowing is ${state.isModalShowing}`);
 });
 
 // -----
@@ -652,5 +624,4 @@ closeBtn.addEventListener('click', () => {
 
   // Update state object
   state.isModalShowing = false;
-  console.log(`isModalShowing is ${state.isModalShowing}`);
 });

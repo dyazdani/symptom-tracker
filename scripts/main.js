@@ -468,17 +468,19 @@ const successScreen = document.createElement('div');
 successScreen.classList.add('hidden');
 successScreen.id = 'success-screen';
 
-const closeBtn = document.createElement('button');
-closeBtn.setAttribute('type', 'button');
-closeBtn.id = 'close-button';
+const btn = document.createElement('button');
+btn.setAttribute('type', 'button');
+btn.id = 'close-button';
 const closeImage = document.createElement('img');
 closeImage.setAttribute('src', './images/cancel.png');
 closeImage.setAttribute('alt', 'close button');
-closeBtn.appendChild(closeImage);
+btn.appendChild(closeImage);
 
-successScreen.appendChild(closeBtn);
+successScreen.appendChild(btn);
 successScreen.innerHTML += '<br> You submitted your daily report!<br> &#127881;';
 document.body.appendChild(successScreen);
+
+// -----
 
 // *---------- Creating element for graying out the screen -------------*
 
@@ -487,7 +489,11 @@ grayOut.id = 'gray-out';
 grayOut.setAttribute('class', 'hidden');
 document.documentElement.appendChild(grayOut);
 
+// -----
+
 // *---------- Event listener for revealing success screen when submit is clicked -------------*
+const closeBtn = document.getElementById('close-button');
+
 submitBtn.addEventListener('click', (event) => {
   // Gray out background elements behind success screen
   grayOut.removeAttribute('class', 'hidden');
@@ -497,9 +503,6 @@ submitBtn.addEventListener('click', (event) => {
   allBtns.forEach((button) => {
     button.disabled = true;
   });
-
-  // Enabling close button for success screen
-  closeBtn.disabled = false;
 
   // hiding physical <div> elements
   newPhysInput.classList.add('hidden');
@@ -516,4 +519,15 @@ submitBtn.addEventListener('click', (event) => {
 
   // Reveal success screen
   successScreen.removeAttribute('class', 'hidden');
+
+  // Enabling close button for success screen
+  closeBtn.disabled = false;
+});
+
+// -----
+
+// *---------- Event listener for close button on success screen -------------*
+closeBtn.addEventListener('click', () => {
+  successScreen.setAttribute('class', 'hidden');
+  grayOut.setAttribute('class', 'hidden');
 });

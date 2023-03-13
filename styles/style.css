@@ -73,6 +73,16 @@ form {
   flex-flow: column nowrap;
 }
 
+#new-phys-input,
+#new-ment-input {
+  display: inline;
+}
+
+#add-phys-symptom,
+#add-ment-symptom {
+  display: inline;
+}
+
 .severity {
   margin: 0.5rem 0.5rem;
   padding: 0;

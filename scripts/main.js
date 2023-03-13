@@ -108,6 +108,11 @@ mental.appendChild(newMentLabel);
 
 // -----
 
+// Creating <div>s for text <input> and '+ Add' <button>s
+
+const physSymptomDiv = document.createElement('div');
+const mentSymptomDiv = document.createElement('div');
+
 // Creating and appending text <input> for adding a new physical symptom to record
 const newPhysInput = document.createElement('input');
 newPhysInput.setAttribute('type', 'text');
@@ -115,7 +120,7 @@ newPhysInput.setAttribute('name', 'new-phys-input-name');
 newPhysInput.id = 'new-phys-input';
 newPhysInput.setAttribute('minlength', 1);
 newPhysInput.placeholder = 'Type here to add symptom';
-physical.appendChild(newPhysInput);
+physSymptomDiv.appendChild(newPhysInput);
 
 // -----
 
@@ -126,7 +131,7 @@ newMentInput.setAttribute('name', 'new-ment-input-name');
 newMentInput.setAttribute('minlength', 1);
 newMentInput.placeholder = 'Type here to add symptom';
 newMentInput.id = 'new-ment-input';
-mental.appendChild(newMentInput);
+mentSymptomDiv.appendChild(newMentInput);
 
 // -----
 
@@ -145,7 +150,7 @@ const physBtnText = document.createElement('span');
 physBtnText.innerText = 'Add';
 addPhysBtn.appendChild(physBtnText);
 
-physical.appendChild(addPhysBtn);
+physSymptomDiv.appendChild(addPhysBtn);
 
 // -----
 
@@ -164,9 +169,13 @@ const mentBtnText = document.createElement('span');
 mentBtnText.innerText = 'Add';
 addMentBtn.appendChild(mentBtnText);
 
-mental.appendChild(addMentBtn);
+mentSymptomDiv.appendChild(addMentBtn);
 
 // -----
+
+// Appending <div>s with <input> and '+ Add' <button> to the physical and mental <div>s
+physical.appendChild(physSymptomDiv);
+mental.appendChild(mentSymptomDiv);
 
 // Appending Physical and Mental <div>s to <form>
 form.appendChild(physical);

@@ -22,21 +22,28 @@ const timeElement = document.getElementById('date');
 timeElement.innerText = date;
 
 // Creating object for storing the current state of the app
-const record = {
-  user: {
-    name: 'Guest',
-    entries: [
-      {
-        timestamp: date,
-        'physical-symptoms': [],
-        'mental-symptoms': [],
-      },
-    ],
+const state = {
+  record: {
+    user: {
+      name: 'Guest',
+      entries: [
+        {
+          timestamp: date,
+          'physical-symptoms': [],
+          'mental-symptoms': [],
+        },
+      ],
+    },
   },
+  isSubmitted: false,
+  isInProgress: false,
+  isModalShowing: false,
+  symptomAdded: false,
+  allSelectedSeveritiesShowing: false,
 };
 
 // destructuring to get physical and mental symptom entries for later use
-const { 'physical-symptoms': physSymptoms, 'mental-symptoms': mentSymptoms } = record.user.entries[0];
+const { 'physical-symptoms': physSymptoms, 'mental-symptoms': mentSymptoms } = state.record.user.entries[0];
 
 // Selecting initial <button> and <p> nodes in <main>
 const createRecordBtn = document.querySelector('#create-record');
@@ -171,6 +178,10 @@ form.appendChild(submitBtn);
 // *--------- Creating event listener to 'Create a New Record' on click -----------*
 
 createRecordBtn.addEventListener('click', () => {
+  // Update state object
+  state.isInProgress = true;
+  console.log(`isInProgress is ${state.isInProgress}`);
+
   // Disappear <p> and createRecordBtn <button>
   createRecordBtn.remove();
   noRecordP.remove();
@@ -187,6 +198,7 @@ createRecordBtn.addEventListener('click', () => {
 function renderPhysSeverity() {
   // Get array of all physical radiogroup <div>s
   const [...physRadioDivs] = document.querySelectorAll('.physical-radiogroup');
+  const [...mentRadioDivs] = document.querySelectorAll('.mental-radiogroup');
 
   // Iterate through each physical symptom in record
   for (let i = 0; i < physSymptoms.length; i += 1) {
@@ -220,17 +232,58 @@ function renderPhysSeverity() {
       physRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
     }
   }
+
+  // Update state object if every symptom has severity selected and rendered
+  const isChecked = (element) => {
+    console.log(`element.hasAttribute('checked') is ${element.hasAttribute('checked')}`);
+    return element.hasAttribute('checked');
+  };
+
+  let physSymptomSeverityBtnsRendered = true;
+  let mentSymptomSeverityBtnsRendered = true;
+  let allSymptomSeverityBtnsRendered;
+
+  for (let i = 0; i < physRadioDivs.length; i += 1) {
+    const [...radioDivElements] = physRadioDivs[i].children;
+    if (radioDivElements.some(isChecked)) {
+      physSymptomSeverityBtnsRendered = true;
+    } else {
+      physSymptomSeverityBtnsRendered = false;
+    }
+  }
+
+  for (let i = 0; i < mentRadioDivs.length; i += 1) {
+    const [...radioDivElements] = mentRadioDivs[i].children;
+    if (radioDivElements.some(isChecked)) {
+      mentSymptomSeverityBtnsRendered = true;
+    } else {
+      mentSymptomSeverityBtnsRendered = false;
+    }
+  }
+
+  console.log(`physSymptomSeverityBtnsRendered is ${physSymptomSeverityBtnsRendered}`);
+  console.log(`mentSymptomSeverityBtnsRendered is ${mentSymptomSeverityBtnsRendered}`);
+
+  console.log(`allSymptomSeverityBtnsRendered is ${allSymptomSeverityBtnsRendered}`);
+
+  if (physSymptomSeverityBtnsRendered && mentSymptomSeverityBtnsRendered) {
+    state.allSelectedSeveritiesShowing = true;
+  }
+
+  console.log(`allSelectedSeveritiesShowing is ${state.allSelectedSeveritiesShowing}`);
 }
 
 // *-------- Rendering Mental Symptom Severity Ratings --------*
 function renderMentSeverity() {
   // Get array of all mental radiogroup <div>s
+  const [...physRadioDivs] = document.querySelectorAll('.physical-radiogroup');
   const [...mentRadioDivs] = document.querySelectorAll('.mental-radiogroup');
 
   // Iterate through each mental symptom in record
   for (let i = 0; i < mentSymptoms.length; i += 1) {
-    // Selected  severity in record object
+    // Selected severity in record object
     const severityFromRecord = mentSymptoms[i].severity;
+
     const mentRadioChildren = [...mentRadioDivs[i].children];
     const checkedSeverityBtnIndex = mentRadioChildren.findIndex((element) => element.hasAttribute('checked'));
 
@@ -259,6 +312,44 @@ function renderMentSeverity() {
       mentRadioChildren[matchingSeverityBtnIndex].setAttribute('data-value', 'True');
     }
   }
+  // Update state object if every symptom has severity selected and rendered
+  const isChecked = (element) => {
+    console.log(`element.hasAttribute('checked') is ${element.hasAttribute('checked')}`);
+    return element.hasAttribute('checked');
+  };
+
+  let physSymptomSeverityBtnsRendered = true;
+  let mentSymptomSeverityBtnsRendered = true;
+  let allSymptomSeverityBtnsRendered;
+
+  for (let i = 0; i < physRadioDivs.length; i += 1) {
+    const [...radioDivElements] = physRadioDivs[i].children;
+    if (radioDivElements.some(isChecked)) {
+      physSymptomSeverityBtnsRendered = true;
+    } else {
+      physSymptomSeverityBtnsRendered = false;
+    }
+  }
+
+  for (let i = 0; i < mentRadioDivs.length; i += 1) {
+    const [...radioDivElements] = mentRadioDivs[i].children;
+    if (radioDivElements.some(isChecked)) {
+      mentSymptomSeverityBtnsRendered = true;
+    } else {
+      mentSymptomSeverityBtnsRendered = false;
+    }
+  }
+
+  console.log(`physSymptomSeverityBtnsRendered is ${physSymptomSeverityBtnsRendered}`);
+  console.log(`mentSymptomSeverityBtnsRendered is ${mentSymptomSeverityBtnsRendered}`);
+
+  console.log(`allSymptomSeverityBtnsRendered is ${allSymptomSeverityBtnsRendered}`);
+
+  if (physSymptomSeverityBtnsRendered && mentSymptomSeverityBtnsRendered) {
+    state.allSelectedSeveritiesShowing = true;
+  }
+
+  console.log(`allSelectedSeveritiesShowing is ${state.allSelectedSeveritiesShowing}`);
 }
 
 // ------------------------------------------------------------------------------------------
@@ -306,6 +397,15 @@ function renderPhysSymptom() {
 
   // Appending radiogroup to physical <div>
   physical.insertBefore(physicalRadiogroup, newPhysLabel);
+
+  // Update state object
+  if (state.symptomAdded === false) {
+    state.symptomAdded = true;
+    console.log(`symptomAdded is ${state.symptomAdded}`);
+  }
+
+  state.allSelectedSeveritiesShowing = false;
+  console.log(`allSelectedSevertiesShowing is ${state.allSelectedSeveritiesShowing}`);
 
   //-----
 
@@ -365,6 +465,15 @@ function renderMentSymptom() {
 
   // Appending radiogroup to mental <div>
   mental.insertBefore(mentalRadiogroup, newMentLabel);
+
+  // Update state object
+  if (state.symptomAdded === false) {
+    state.symptomAdded = true;
+    console.log(`symptomAdded is ${state.symptomAdded}`);
+  }
+
+  state.allSelectedSeveritiesShowing = false;
+  console.log(`allSelectedSevertiesShowing is ${state.allSelectedSeveritiesShowing}`);
 
   //-----
 
@@ -495,6 +604,12 @@ document.documentElement.appendChild(grayOut);
 const closeBtn = document.getElementById('close-button');
 
 submitBtn.addEventListener('click', (event) => {
+  // Update state object
+  state.isSubmitted = true;
+  console.log(`isSubmitted is ${state.isSubmitted}`);
+  state.isInProgress = false;
+  console.log(`isInProgress is ${state.isInProgress}`);
+
   // Gray out background elements behind success screen
   grayOut.removeAttribute('class', 'hidden');
 
@@ -522,6 +637,10 @@ submitBtn.addEventListener('click', (event) => {
 
   // Enabling close button for success screen
   closeBtn.disabled = false;
+
+  // Update state object
+  state.isModalShowing = true;
+  console.log(`isModalShowing is ${state.isModalShowing}`);
 });
 
 // -----
@@ -530,4 +649,8 @@ submitBtn.addEventListener('click', (event) => {
 closeBtn.addEventListener('click', () => {
   successScreen.setAttribute('class', 'hidden');
   grayOut.setAttribute('class', 'hidden');
+
+  // Update state object
+  state.isModalShowing = false;
+  console.log(`isModalShowing is ${state.isModalShowing}`);
 });

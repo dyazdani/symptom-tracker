@@ -45,9 +45,18 @@ const state = {
 // destructuring to get physical and mental symptom entries for later use
 const { 'physical-symptoms': physSymptoms, 'mental-symptoms': mentSymptoms } = state.record.user.entries[0];
 
-// Selecting initial <button> and <p> nodes in <main>
-const createRecordBtn = document.querySelector('#create-record');
-const noRecordP = document.querySelector('#no-record');
+// Creating and appending initial <p> and <button> elements
+const noRecordP = document.createElement('p');
+noRecordP.id = 'no-record';
+noRecordP.innerText = "You don't have a symptom record yet for today.";
+
+const createRecordBtn = document.createElement('button');
+createRecordBtn.id = 'create-record';
+createRecordBtn.setAttribute('type', 'button');
+createRecordBtn.innerText = 'Create a New Record';
+
+section.appendChild(noRecordP);
+section.appendChild(createRecordBtn);
 
 // -------------------------------------------------------------------------------
 

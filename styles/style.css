@@ -1,15 +1,4 @@
 /* Styles on Initial Page */
-#no-record {
-  text-align: center;
-  padding: 2rem;
-}
-
-#create-record {
-  width: max-content;
-  align-self: center;
-  padding: 0.5rem 3rem;
-}
-
 header {
   display: flex;
   flex-flow: row nowrap;
@@ -29,6 +18,26 @@ h1 {
   padding-right: 2rem;
 }
 
+section {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px solid black;
+  height: fit-content;
+  width: 50vw;
+  padding: 1rem 2rem 5rem 2rem;
+}
+
+#no-record {
+  text-align: center;
+  padding: 2rem;
+}
+
+#create-record {
+  width: max-content;
+  align-self: center;
+  padding: 0.5rem 3rem;
+}
+
 body {
   display: flex;
   flex-flow: column nowrap;
@@ -36,19 +45,12 @@ body {
   margin: 0;
 }
 
-main {
-  display: flex;
-  flex-flow: column nowrap;
-  border: 1px solid black;
-  height: 84vh;
-  width: max-content;
-}
-
 h2 {
   border: 1px solid black;
   padding: 1rem;
-  margin-top: 0;
+  margin: 0;
   text-align: center;
+  border-bottom: none;
 }
 
 /* Styles after record is created */

@@ -10,7 +10,7 @@
 // select <section> node
 const section = document.querySelector('section');
 
-// Creating current date and putting it in an element to append to <h2> in <main>
+// Creating current date
 const date = new Date().toLocaleDateString('en-us', {
   weekday: 'long',
   month: 'long',

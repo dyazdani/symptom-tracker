@@ -97,19 +97,18 @@ mental.appendChild(mentalTitle);
 
 // Creating and appending <label> elements for text <input> elements
 const newPhysLabel = document.createElement('label');
-newPhysLabel.setAttribute('for', 'new-phys-symptom');
+newPhysLabel.setAttribute('for', 'new-phys-input');
 newPhysLabel.innerText = 'New Symptom';
 physical.appendChild(newPhysLabel);
 
 const newMentLabel = document.createElement('label');
-newMentLabel.setAttribute('for', 'new-ment-symptom');
+newMentLabel.setAttribute('for', 'new-ment-input');
 newMentLabel.innerText = 'New Symptom';
 mental.appendChild(newMentLabel);
 
 // -----
 
 // Creating <div>s for text <input> and '+ Add' <button>s
-
 const physSymptomDiv = document.createElement('div');
 const mentSymptomDiv = document.createElement('div');
 

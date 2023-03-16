@@ -58,8 +58,7 @@ h2 {
   background: rgb(129, 129, 129);
 }
 
-div#physical,
-div#mental {
+.symptom-list {
   display: flex;
   flex-flow: column nowrap;
 }

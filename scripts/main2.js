@@ -94,13 +94,25 @@ function onSeveritySelectionClicked(event, symptomType) {
 }
 
 // -----------------------
-function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields) {
+function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSymptomLists) {
   allButtons.forEach((button) => {
     if (button.classList.contains('severity')) {
       button.disabled = true;
     } else {
+      console.log(button);
       button.classList.add('hidden');
     }
+
+
+    allSymptomLists.forEach(symptomList => {
+      const [...symptomListChildren] = symptomList.children;
+      const arrayMethodResultForIfStatement = symptomListChildren.some((element) => {
+        return element.classList.contains('radiogroup');
+      })
+      if (!arrayMethodResultForIfStatement) {
+        symptomList.classList.add('hidden');
+      }
+    })
 
     allInputLabels.forEach((label) => {
       label.classList.add('hidden');
@@ -111,7 +123,7 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields) {
     });
 
     // renderGrayOut();
-    renderSuccessModal();
+    // renderSuccessModal();
   });
 }
 // TO DO: Remove modal and grayed out layer to reveal copy of record form.
@@ -151,7 +163,7 @@ function getInputField(symptomType) {
 function getAddSymptomButton(symptomType) {
   const button = document.createElement('button');
   button.setAttribute('type', 'button');
-  button.classList.add = 'add-symptom';
+  button.classList.add('add-symptom');
   button.disabled = true;
   button.id = `add-${symptomType}-symptom`;
 
@@ -190,6 +202,7 @@ function getInputWithAddSymptomButton(symptomType) {
 function getSymptomList(symptomType) {
   const div = document.createElement('div');
   div.id = symptomType;
+  div.classList.add('symptom-list');
 
   div.appendChild(getSymptomListTitle(symptomType));
   div.appendChild(getInputLabel(symptomType));
@@ -211,7 +224,9 @@ function getSubmitButton() {
     console.log(allButtons);
     const [...allInputLabels] = document.querySelectorAll('.input-label');
     const [...allInputFields] = document.querySelectorAll('input');
-    onSubmitButtonClicked(allButtons, allInputLabels, allInputFields);
+    const [...allSymptomLists] = document.querySelectorAll('.symptom-list');
+
+    onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSymptomLists);
   });
 
   return button;
@@ -293,7 +308,7 @@ function renderSeveritySelection(radiogroup, symptomType, symptomName) {
 function renderSymptom(symptomName, symptomList, inputLabel, symptomType) {
   // Creating radiogroup <div>
   const radiogroup = document.createElement('div');
-  radiogroup.classList.add(`${symptomType}-radiogroup`, symptomName);
+  radiogroup.classList.add(symptomType, 'radiogroup');
   radiogroup.setAttribute('role', 'radiogroup');
   radiogroup.setAttribute('aria-labelledby', `legend-${symptomName}`);
   radiogroup.id = symptomName;

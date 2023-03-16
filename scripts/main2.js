@@ -47,6 +47,11 @@ const { symptoms: symptomsByType } = state.record.user.entries[0];
 const section = document.querySelector('section');
 
 // *----------- Callback functions for event listeners ------------------*
+function onCreateRecordClicked(createRecordButton, noRecordMessage) {
+  createRecordButton.classList.add('hidden');
+  noRecordMessage.classList.add('hidden');
+}
+
 function onAddSymptomClicked(event, submitButton, symptomType) {
   submitButton.disabled = false;
   // TO DO: Throw error if input is repeat of symptom already in record

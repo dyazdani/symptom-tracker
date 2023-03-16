@@ -99,7 +99,6 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSy
     if (button.classList.contains('severity')) {
       button.disabled = true;
     } else {
-      console.log(button);
       button.classList.add('hidden');
     }
   });
@@ -121,12 +120,17 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSy
     allInputFields.forEach((field) => {
       field.classList.add('hidden');
     });
-    
+
   renderGrayOut();
   renderSuccessModal();
 }
 // TO DO: Remove modal and grayed out layer to reveal copy of record form.
 
+// -----------------------
+function onModalCloseButtonClicked(successModal, grayOutDiv) {
+  successModal.classList.add('hidden');
+  grayOutDiv.classList.add('hidden');
+}
 // *----------------------- Element helpers -----------------*
 function getSymptomListTitle(symptomType) {
   const title = document.createElement('h3');
@@ -220,7 +224,6 @@ function getSubmitButton() {
 
   button.addEventListener('click', () => {
     const [...allButtons] = document.querySelectorAll('button');
-    console.log(allButtons);
     const [...allInputLabels] = document.querySelectorAll('.input-label');
     const [...allInputFields] = document.querySelectorAll('input');
     const [...allSymptomLists] = document.querySelectorAll('.symptom-list');
@@ -358,6 +361,11 @@ function renderSuccessModal() {
   closeImage.setAttribute('src', './images/cancel.png');
   closeImage.setAttribute('alt', 'close button');
   closeBtn.appendChild(closeImage);
+
+  const grayOutDiv = document.querySelector('#gray-out');
+  closeBtn.addEventListener('click', () => {
+    onModalCloseButtonClicked(successModal, grayOutDiv);
+  })
 
   const message = document.createElement('p');
   message.innerText = 'You submitted your daily report!';

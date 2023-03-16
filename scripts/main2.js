@@ -90,8 +90,8 @@ function onSeveritySelectionClicked(event, symptomType) {
     });
   }
 }
-// TO DO: Removed/disable buttons. Create success modal and gray out background
 
+// -----------------------
 function onSubmitButtonClicked(allButtons, inputLabel, inputField) {
   allButtons.forEach((button) => {
     if (button.classList.contains('severity')) {

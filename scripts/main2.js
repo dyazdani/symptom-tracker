@@ -92,6 +92,20 @@ function onSeveritySelectionClicked(event, symptomType) {
 }
 // TO DO: Removed/disable buttons. Create success modal and gray out background
 
+function onSubmitButtonClicked(allButtons, inputLabel, inputField) {
+  allButtons.forEach((button) => {
+    if (button.classList.contains('severity')) {
+      button.disabled = true;
+    } else {
+      button.classList.add('hidden');
+    }
+    inputLabel.classList.add('hidden');
+    inputField.classList.add('hidden');
+
+    renderGrayOut();
+    renderSuccessModal();
+  });
+}
 // TO DO: Remove modal and grayed out layer to reveal copy of record form.
 
 // *----------------------- Element helpers -----------------*
@@ -297,6 +311,32 @@ function renderSymptom(symptomName, symptomList, inputLabel, symptomType) {
     radiogroup.appendChild(button);
   }
   symptomList.insertBefore(radiogroup, inputLabel);
+}
+
+// -----------------------
+
+function renderSuccessModal() {
+  const successModal = document.createElement('div');
+  successModal.id = 'success-modal';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.setAttribute('type', 'button');
+  closeBtn.id = 'close-button';
+  const closeImage = document.createElement('img');
+  closeImage.setAttribute('src', './images/cancel.png');
+  closeImage.setAttribute('alt', 'close button');
+  closeBtn.appendChild(closeImage);
+
+  const message = document.createElement('p');
+  message.innerText = 'You submitted your daily report!';
+
+  const emojiHorn = document.createElement('p');
+  emojiHorn.innerText = '🎉';
+
+  successModal.appendChild(closeBtn);
+  successModal.appendChild(message);
+  successModal.appendChild(emojiHorn);
+  document.body.appendChild(successModal);
 }
 
 // -----------------------

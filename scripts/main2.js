@@ -98,38 +98,12 @@ function onSeveritySelectionClicked(event, symptomType) {
 }
 
 // -----------------------
-function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSymptomLists) {
-  allButtons.forEach((button) => {
-    if (button.classList.contains('severity')) {
-      button.disabled = true;
-    } else {
-      button.classList.add('hidden');
-    }
-  });
-
-    allSymptomLists.forEach(symptomList => {
-      const [...symptomListChildren] = symptomList.children;
-      const arrayMethodResultForIfStatement = symptomListChildren.some((element) => {
-        return element.classList.contains('radiogroup');
-      })
-      if (!arrayMethodResultForIfStatement) {
-        symptomList.classList.add('hidden');
-      }
-    })
-
-    allInputLabels.forEach((label) => {
-      label.classList.add('hidden');
-    });
-
-    allInputFields.forEach((field) => {
-      field.classList.add('hidden');
-    });
-
+function onSubmitButtonClicked() {
+  section.replaceChildren();
+  renderSubmittedForm();
   renderGrayOut();
   renderSuccessModal();
 }
-// TO DO: Remove modal and grayed out layer to reveal copy of record form.
-
 // -----------------------
 function onModalCloseButtonClicked(successModal, grayOutDiv) {
   successModal.classList.add('hidden');
@@ -227,15 +201,75 @@ function getSubmitButton() {
   button.innerText = 'Submit';
 
   button.addEventListener('click', () => {
-    const [...allButtons] = document.querySelectorAll('button');
-    const [...allInputLabels] = document.querySelectorAll('.input-label');
-    const [...allInputFields] = document.querySelectorAll('input');
-    const [...allSymptomLists] = document.querySelectorAll('.symptom-list');
-
-    onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSymptomLists);
+    onSubmitButtonClicked();
   });
 
   return button;
+}
+
+function getFinalSymptomListTitle(finalSymptomType) {
+  const title = document.createElement('h3');
+  title.innerText = finalSymptomType;
+  return title;
+}
+
+function getFinalSymptomList(finalSymptomType) {
+  if (finalSymptomType.length > 0) {
+  const div = document.createElement('div');
+  div.id = finalSymptomType;
+  div.classList.add('symptom-list');
+
+  div.appendChild(getFinalSymptomListTitle(finalSymptomType));
+  getFinalSymptoms(finalSymptomType, div);
+
+  return div;
+  }
+
+}
+
+function getFinalSymptoms(finalSymptomType, finalSymptomList) {
+  for (let symptomIndex = 0; symptomIndex < symptomsByType[finalSymptomType].length; symptomIndex += 1) {
+    const currentSymptomName = symptomsByType[finalSymptomType][symptomIndex].name;
+    finalSymptomList.appendChild(getSymptom(finalSymptomType, currentSymptomName, symptomIndex));
+}
+}
+
+function getSymptom(finalSymptomType, symptomName, symptomIndex) {
+// Creating radiogroup <div>
+const radiogroup = document.createElement('div');
+radiogroup.classList.add(finalSymptomType, 'radiogroup');
+radiogroup.setAttribute('role', 'radiogroup');
+radiogroup.setAttribute('aria-labelledby', `legend-${symptomName}`);
+radiogroup.id = symptomName;
+
+// Creating and adding <p> for legend
+const legend = document.createElement('p');
+legend.id = `legend-${symptomName}`;
+legend.innerText = symptomName;
+radiogroup.appendChild(legend);
+
+// Creating and adding severity button
+const selectedSeverity = symptomsByType[finalSymptomType][symptomIndex].severity;
+
+const button = document.createElement('button');
+button.className = `severity ${selectedSeverity}`;
+button.setAttribute('type', 'button');
+button.setAttribute('role', 'radio');
+button.setAttribute('aria-checked', 'true');
+button.setAttribute('tabindex', '0');
+button.setAttribute('aria-labelledby', `${selectedSeverity}Label`);
+button.setAttribute('data-value', 'true');
+button.setAttribute('checked', '');
+
+const buttonLabel = document.createElement('label');
+buttonLabel.innerText = selectedSeverity;
+buttonLabel.id = `${selectedSeverity}Label`;
+button.appendChild(buttonLabel);
+
+radiogroup.appendChild(legend);
+radiogroup.appendChild(button);
+
+return radiogroup;
 }
 
 // *----------------------- Rendering functions -----------------*
@@ -381,6 +415,15 @@ function renderSuccessModal() {
   successModal.appendChild(message);
   successModal.appendChild(emojiHorn);
   document.body.appendChild(successModal);
+}
+// -----------------------
+
+function renderSubmittedForm() {
+  const symptomTypes = Object.keys(symptomsByType);
+  for(let i = 0; i < symptomTypes.length; i += 1) {
+    const currentFinalSymptomType = symptomTypes[i];
+    section.appendChild(getFinalSymptomList(currentFinalSymptomType));
+  }
 }
 
 // -----------------------

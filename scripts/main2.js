@@ -341,6 +341,12 @@ function renderSuccessModal() {
 
 // -----------------------
 
+function renderGrayOut() {
+  const grayOut = document.createElement('div');
+  grayOut.id = 'gray-out';
+  document.documentElement.appendChild(grayOut);
+}
+
 // *----------------------- Initialize app -----------------*
 renderDate();
 renderEmptyState();

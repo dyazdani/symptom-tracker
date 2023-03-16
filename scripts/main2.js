@@ -92,17 +92,17 @@ function onSeveritySelectionClicked(event, symptomType) {
 }
 
 // -----------------------
-function onSubmitButtonClicked(allButtons, inputLabel, inputField) {
+function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields) {
   allButtons.forEach((button) => {
     if (button.classList.contains('severity')) {
       button.disabled = true;
     } else {
       button.classList.add('hidden');
     }
-    inputLabel.classList.add('hidden');
-    inputField.classList.add('hidden');
+    allInputLabels.classList.add('hidden');
+    allInputFields.classList.add('hidden');
 
-    renderGrayOut();
+    // renderGrayOut();
     renderSuccessModal();
   });
 }
@@ -118,6 +118,7 @@ function getSymptomListTitle(symptomType) {
 // -------------------
 function getInputLabel(symptomType) {
   const label = document.createElement('label');
+  label.classList.add('input-label');
   label.setAttribute('for', `${symptomType}-input`);
   label.innerText = 'New Symptom';
   return label;
@@ -198,6 +199,13 @@ function getSubmitButton() {
   button.setAttribute('type', 'button');
   button.id = 'submit-button';
   button.innerText = 'Submit';
+
+  button.addEventListener('click', () => {
+    const allButtons = document.querySelectorAll('button');
+    const allInputLabels = document.querySelectorAll('.input-label');
+    const allInputFields = document.querySelectorAll('input');
+    onAddSymptomClicked(allButtons, allInputLabels, allInputFields);
+  });
 
   return button;
 }

@@ -56,13 +56,9 @@ function onAddSymptomClicked(event, submitButton, symptomType) {
   submitButton.disabled = false;
   // TO DO: Throw error if input is repeat of symptom already in record
 
-  const input = document.querySelector(`${symptomType}-input`);
+  const input = document.querySelector(`#${symptomType}-input`);
   // Update state object
-  if (
-    symptomsByType[symptomType].every(
-      (symptomEntry) => symptomEntry.name !== input.value, // Anthony: how to access input?
-    )
-  ) {
+  if (symptomsByType[symptomType].every((symptomEntry) => symptomEntry.name !== input.value)) {
     const newSymptomEntry = {
       name: input.value,
       severity: undefined,
@@ -77,7 +73,8 @@ function onAddSymptomClicked(event, submitButton, symptomType) {
 }
 
 // ---------------------
-function toggleDisabled(event, addSymptomButton) {
+function toggleDisabled(event, symptomType) {
+  const addSymptomButton = document.querySelector(`#add-${symptomType}-symptom`);
   if (event.target.value === '') {
     addSymptomButton.disabled = true;
   } else {
@@ -104,8 +101,14 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields) {
     } else {
       button.classList.add('hidden');
     }
-    allInputLabels.classList.add('hidden');
-    allInputFields.classList.add('hidden');
+
+    allInputLabels.forEach((label) => {
+      label.classList.add('hidden');
+    });
+
+    allInputFields.forEach((field) => {
+      field.classList.add('hidden');
+    });
 
     // renderGrayOut();
     renderSuccessModal();
@@ -137,10 +140,8 @@ function getInputField(symptomType) {
   input.id = `${symptomType}-input`;
   input.placeholder = 'Type here to add symptom';
 
-  const addSymptomButton = document.querySelector(`#add-${symptomType}-symptom`);
-
   input.addEventListener('input', (event) => {
-    toggleDisabled(event, addSymptomButton);
+    toggleDisabled(event, symptomType);
   });
 
   return input;
@@ -162,11 +163,11 @@ function getAddSymptomButton(symptomType) {
   buttonText.innerText = 'Add';
   button.appendChild(buttonText);
 
-  const submitButton = document.querySelector('#submit-button');
-
   button.addEventListener('click', (event) => {
+    const submitButton = document.querySelector('#submit-button');
     onAddSymptomClicked(event, submitButton, symptomType);
-    const symptomName = symptomsByType[symptomType][symptomType.length - 1].name;
+    const symptomTypeArray = symptomsByType[symptomType];
+    const symptomName = symptomTypeArray[symptomTypeArray.length - 1].name;
     const symptomList = document.querySelector(`#${symptomType}`);
     const inputDiv = document.querySelector(`#${symptomType}-input-with-add-symptom-button`);
     const inputLabel = inputDiv.previousSibling;
@@ -206,10 +207,11 @@ function getSubmitButton() {
   button.innerText = 'Submit';
 
   button.addEventListener('click', () => {
-    const allButtons = document.querySelectorAll('button');
-    const allInputLabels = document.querySelectorAll('.input-label');
-    const allInputFields = document.querySelectorAll('input');
-    onAddSymptomClicked(allButtons, allInputLabels, allInputFields);
+    const [...allButtons] = document.querySelectorAll('button');
+    console.log(allButtons);
+    const [...allInputLabels] = document.querySelectorAll('.input-label');
+    const [...allInputFields] = document.querySelectorAll('input');
+    onSubmitButtonClicked(allButtons, allInputLabels, allInputFields);
   });
 
   return button;

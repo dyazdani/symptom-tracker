@@ -1,3 +1,6 @@
+/* Exceptions for Code Spell Checker extension in VS Code
+ cspell: ignore ment radiogroup radiogroups btn btns labelledby divs */
+
 /* Styles on Initial Page */
 header {
   display: flex;

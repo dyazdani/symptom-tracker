@@ -1,4 +1,8 @@
 /* eslint-disable no-param-reassign */
+
+// Exceptions for Code Spell Checker extension in VS Code
+// cspell: ignore ment radiogroup radiogroups btn btns labelledby
+
 const SEVERITY_RATING = ['none', 'mild', 'moderate', 'severe'];
 
 /* Example of symptom entry

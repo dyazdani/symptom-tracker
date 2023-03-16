@@ -102,7 +102,7 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSy
       console.log(button);
       button.classList.add('hidden');
     }
-
+  });
 
     allSymptomLists.forEach(symptomList => {
       const [...symptomListChildren] = symptomList.children;
@@ -121,10 +121,9 @@ function onSubmitButtonClicked(allButtons, allInputLabels, allInputFields, allSy
     allInputFields.forEach((field) => {
       field.classList.add('hidden');
     });
-
-    // renderGrayOut();
-    // renderSuccessModal();
-  });
+    
+  renderGrayOut();
+  renderSuccessModal();
 }
 // TO DO: Remove modal and grayed out layer to reveal copy of record form.
 

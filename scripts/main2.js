@@ -47,8 +47,8 @@ const { symptoms: symptomsByType } = state.record.user.entries[0];
 const section = document.querySelector('section');
 
 // *----------- Callback functions for event listeners ------------------*
-function onCreateRecordClicked(createRecordButton, noRecordMessage) {
-  createRecordButton.classList.add('hidden');
+function onCreateRecordClicked(event, noRecordMessage) {
+  event.target.classList.add('hidden');
   noRecordMessage.classList.add('hidden');
 }
 
@@ -235,17 +235,20 @@ function renderRecordForm() {
 
 // -------------------
 function renderEmptyState() {
-  const noRecordP = document.createElement('p');
-  noRecordP.id = 'no-record';
-  noRecordP.innerText = "You don't have a symptom record yet for today.";
+  const noRecordMessage = document.createElement('p');
+  noRecordMessage.id = 'no-record';
+  noRecordMessage.innerText = "You don't have a symptom record yet for today.";
 
   const createRecordBtn = document.createElement('button');
   createRecordBtn.id = 'create-record';
   createRecordBtn.setAttribute('type', 'button');
   createRecordBtn.innerText = 'Create a New Record';
-  createRecordBtn.addEventListener('click', renderRecordForm);
+  createRecordBtn.addEventListener('click', (event) => {
+    onCreateRecordClicked(event, noRecordMessage);
+    renderRecordForm();
+  });
 
-  section.appendChild(noRecordP);
+  section.appendChild(noRecordMessage);
   section.appendChild(createRecordBtn);
 }
 
